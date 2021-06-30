@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public int currentCountEnemy { get; private set; }
+    [HideInInspector] public GameObject player; //Ссылка на игрока
+    [HideInInspector] public int currentCountEnemy { get; private set; }
+
+    [Tooltip("Точка в которой появляется игрок после смерти")]
+    [SerializeField] private Transform spawnPlayer;
 
     private void Awake()
     {
@@ -15,7 +19,15 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    
+    public void PlayerDeath()
+    {
+        player.transform.position = spawnPlayer.position;
+    }
+
+    public void GameOwer() //Игрок исчерпал запас своих жизней и игра заканчивается
+    {
+
+    }
 
 
 }

@@ -106,7 +106,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -244,7 +244,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPl: {fileID: 7698152895337235876}
-  moveSpeed: 3
-  mouseSpeed: 1
+  moveSpeed: 100
+  mouseSpeed: 5
   bullet: {fileID: 0}
   spawnPointShoot: {fileID: 0}
+  onShoot:
+    m_PersistentCalls:
+      m_Calls: []

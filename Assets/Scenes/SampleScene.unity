@@ -25157,6 +25157,18 @@ PrefabInstance:
       propertyPath: mouseSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7815632524911497476, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815632524911497476, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815632524911497476, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8591205170606160243, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1

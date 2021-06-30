@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ControllPlayerPC : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ControllPlayerPC : MonoBehaviour
     [SerializeField] private float mouseSpeed = 50f; //×óâñòâèòåëüíîñòü ìûøè
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform spawnPointShoot;
+    [SerializeField] UnityEvent onShoot;
 
     private Rigidbody _rb;
     private PlControl _inputs;
@@ -19,12 +21,12 @@ public class ControllPlayerPC : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-       // _inputs.Player.Shoot.performed += Shoot_performed;
+        _inputs.Player.Shoot.performed += Shoot_performed;
     }
 
     private void Shoot_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Shoot();
+        onShoot.Invoke();
     }
 
     private void Update()
