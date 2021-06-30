@@ -67,28 +67,17 @@ public class SpawnBomb : MonoBehaviour
 
         //позиция бомбы с учетом того, куда смотрит игрок
         Vector3 bombPosition = playerPosition + transform.forward * 2;
-        //исключение диагональных позиций
-        //если позиция из списка возможных, оставляем ее
-        if (grids.Contains(bombPosition))
+
+        var c = grid.GetIndexCell(bombPosition);
+
+        if (grid.isEmpty(c.x,c.y))
         {
-            return bombPosition;
+            
+            return grid.GetPos(c.x,c.y);
         }
         else
         {
-            int index=-1;
-            float minDistance = float.MaxValue;
-            //если позиция неправильная, находим позицию среди возможных, самую близкую к получившийся до этого позиции
-            for (int i=0;i<grids.Count;i++)
-            {
-                float newDistance = Vector3.Distance(grids[i], bombPosition);
-                if (newDistance < minDistance)
-                {
-                    index = i;
-                    minDistance = newDistance;
-                }
-            }
-
-            return grids[index];
+           return Vector3.zero;
         }
     }
 
