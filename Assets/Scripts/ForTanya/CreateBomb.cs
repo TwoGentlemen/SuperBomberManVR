@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateBomb : MonoBehaviour
+public class CreateBomb1 : MonoBehaviour
 {
     [SerializeField] private GameObject bomb;
     [SerializeField] private int distance=2;
