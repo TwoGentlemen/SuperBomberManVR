@@ -16,29 +16,38 @@ public class SpawnBomb : MonoBehaviour
     
     private List<Vector3> grids = new List<Vector3>();
 
+    private Grid grid;
+
     private void Start()
     {
         CreateGrid();
     }
+
     private void CreateGrid()
     {
-        var y = (int)Vector3.Distance(gridHight.position,gridStart.position) / step;
-        var x = (int)Vector3.Distance(gridWith.position,gridStart.position) / step;
-        y++;
-        x++;
+        grid = new Grid(gridStart.position,gridWith.position,gridHight.position,step);
 
-        Debug.Log("x = "+x);
-        Debug.Log("y = "+y);
-
-        for (int i = 0; i < y; i++)
+        var obj = GameObject.FindGameObjectsWithTag("Wall");
+        foreach (var item in obj)
         {
-            for (int j = 0; j < x; j++)
+            grid.ActiveOrNotCell(item.transform.position,false);
+        }
+        
+        var obj2 = GameObject.FindGameObjectsWithTag("DestructableObject");
+        foreach (var item in obj2)
+        {
+            grid.ActiveOrNotCell(item.transform.position,false);
+        }
+
+        for (int i = 0; i < grid.countCell_Y; i++)
+        for (int j = 0; j < grid.countCell_X; j++)
+        {
+            if (grid.isEmpty(j, i))
             {
-                var pos = gridStart.position + new Vector3(step * j, gridStart.position.y, -step * i);
-                grids.Add(pos);
-                Instantiate(point,pos,Quaternion.identity);
+                Instantiate(point,grid.GetPos(j,i), Quaternion.identity);
             }
         }
+
     }
 
     public void PlantBomb()
