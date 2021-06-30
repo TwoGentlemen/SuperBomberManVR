@@ -20,18 +20,24 @@ public class CreateBomb : MonoBehaviour
     }
 
 
-    private void PlantBomb()
+    public void PlantBomb()
     {
         //определение позиции для бомбы
         Vector3 bombPosition = CreateBombPosition();
-        //создание бомбы
-        Instantiate(bomb, bombPosition, Quaternion.identity);
 
+        if (bombPosition != Vector3.zero)
+        {
+            //создание бомбы
+            Instantiate(bomb, bombPosition, Quaternion.identity);
+        }
+        else Debug.Log("Не получается");
     }
 
 
     private Vector3 CreateBombPosition()
     {
+        //Для проверки не занята ли клетка
+        List<Vector3> unavailablePositions = SetBlocksPositions();
         //округляю позицию игрока чтобы получилось сделать по клеточкам
         Vector3 playerPosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
         //лист возможных позиций бомбы чтобы исключить позиции по диагонали
@@ -43,28 +49,39 @@ public class CreateBomb : MonoBehaviour
         //позиция бомбы с учетом того, куда смотрит игрок
         Vector3 bombPosition = playerPosition + transform.forward * 2;
         //исключение диагональных позиций
-        //если позиция из списка возможных, оставляем ее
-        if (possiblePositions.Contains(bombPosition))
+        int index = -1;
+        float minDistance = float.MaxValue;
+        //если позиция неправильная, находим позицию среди возможных, самую близкую к получившийся до этого позиции
+        for (int i = 0; i < possiblePositions.Count; i++)
         {
-            return bombPosition;
-        }
-        else
-        {
-            int index=-1;
-            float minDistance = float.MaxValue;
-            //если позиция неправильная, находим позицию среди возможных, самую близкую к получившийся до этого позиции
-            for (int i=0;i<possiblePositions.Count;i++)
+            float newDistance = Vector3.Distance(possiblePositions[i], bombPosition);
+            if (newDistance < minDistance && !unavailablePositions.Contains(possiblePositions[i]))
             {
-                float newDistance = Vector3.Distance(possiblePositions[i], bombPosition);
-                if (newDistance < minDistance)
-                {
-                    index = i;
-                    minDistance = newDistance;
-                }
+                index = i;
+                minDistance = newDistance;
             }
-
-            return possiblePositions[index];
         }
+
+        if (index == -1) return Vector3.zero;
+        Debug.Log("Позиция:" + possiblePositions[index]);
+        return possiblePositions[index];
+
+    }
+
+
+    private List<Vector3> SetBlocksPositions()
+    {
+        Vector3 playerPosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+        Collider[] blocks = Physics.OverlapSphere(playerPosition, distance);
+
+        List<Vector3> blocksPositions = new List<Vector3>();
+        foreach (var block in blocks)
+        {
+            Debug.Log(block.transform.position);
+            blocksPositions.Add(new Vector3(Mathf.Round(block.transform.position.x), Mathf.Round(block.transform.position.y), Mathf.Round(block.transform.position.z)));
+        }
+
+        return blocksPositions;
     }
 
 
