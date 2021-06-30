@@ -48,6 +48,7 @@ public class ControllPlayerPC : MonoBehaviour
 
     private void Shoot()
     {
+        
         //var _bullet = Instantiate(bullet, spawnPointShoot.position, Quaternion.identity);
         //var rb = _bullet.GetComponent<Rigidbody>();
         //var explosion = _bullet.GetComponent<BombExplosion>();
