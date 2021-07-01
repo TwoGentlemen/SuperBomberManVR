@@ -29,13 +29,13 @@ public class SpawnBomb : MonoBehaviour
         var obj = GameObject.FindGameObjectsWithTag("Wall");
         foreach (var item in obj)
         {
-            grid.ActiveOrNotCell(item.transform.position,false);
+            grid.ActiveOrNotCell(item.transform.position,false, item);
         }
         
         var obj2 = GameObject.FindGameObjectsWithTag("DestructableObject");
         foreach (var item in obj2)
         {
-            grid.ActiveOrNotCell(item.transform.position,false);
+            grid.ActiveOrNotCell(item.transform.position,false, item);
         }
 
         for (int i = 0; i < grid.countCell_Y; i++)

@@ -5,6 +5,7 @@ public class Grid
     {
         private Vector3 _gridPos;
         private bool _isActive;
+        private GameObject _gameObj;
 
         public Cell(Vector3 grisPos)
         {
@@ -24,6 +25,16 @@ public class Grid
         public void SetActive(bool isActive)
         {
             _isActive = isActive;
+        }
+
+        public GameObject GetObject()
+        {
+            return _gameObj;
+        }
+
+        public void SetObject(GameObject gameObj)
+        {
+            _gameObj= gameObj;
         }
     }
 
@@ -62,12 +73,25 @@ public class Grid
         for (int i = 0; i < countCell_Y; i++)
         for (int j = 0; j < countCell_X; j++)
         {
-            var pos = gridStart + new Vector3(step * j, gridStart.y, -step * i);
+            var pos = gridStart + new Vector3(step * j, 0, -step * i);
             cells[i,j] = new Cell(pos);
             cells[i,j].SetActive(true);
         }
 
-        Debug.Log("Матрица клеток инициализирована " + countCell_X + " на " + countCell_Y);
+        var obj = GameObject.FindGameObjectsWithTag("Wall");
+        foreach (var item in obj)
+        {
+            ActiveOrNotCell(item.transform.position, false, item);
+            //Debug.Log(item.transform.position);
+        }
+
+        var obj2 = GameObject.FindGameObjectsWithTag("DestructableObject");
+        foreach (var item in obj2)
+        {
+            ActiveOrNotCell(item.transform.position, false, item);
+        }
+
+        //Debug.Log("Матрица клеток инициализирована " + countCell_X + " на " + countCell_Y);
     }
 
 
@@ -105,19 +129,25 @@ public class Grid
         return cells[buf.y,buf.x].GetActive();
     }
 
-    public void  ActiveOrNotCell(Vector3 posObj, bool isActive)
+    public void  ActiveOrNotCell(Vector3 posObj, bool isActive,GameObject wall)
     {
         var byf = GetIndexCell(posObj);
 
-        Debug.Log("Получен индекс клетки в котором находится объект. y = "+byf.y + " x = "+ byf.x);
+        //Debug.Log("Получен индекс клетки в котором находится объект. y = "+byf.y + " x = "+ byf.x);
         cells[byf.y,byf.x].SetActive(isActive);
-
+        cells[byf.y, byf.x].SetObject(wall);
     }
+
 
     public Vector3 GetPos(int x, int y)
     {
         return cells[y,x].GetPosition();
     }
    
+
+    public GameObject GetGameObject(int x,int y)
+    {
+        return cells[y, x].GetObject();
+    }
    
 }
