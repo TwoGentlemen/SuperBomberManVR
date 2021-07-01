@@ -73,7 +73,7 @@ public class Grid
     }
 
 
-    private Vector2Int GetIndexCell(Vector3 posObj)
+    public Vector2Int GetIndexCell(Vector3 posObj)
     {
         float minDist = float.MaxValue;
 
