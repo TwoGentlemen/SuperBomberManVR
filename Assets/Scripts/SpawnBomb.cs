@@ -12,8 +12,7 @@ public class SpawnBomb : MonoBehaviour
     [SerializeField] private Transform gridHight;
 
     public GameObject point;
-    
-    
+   
     private List<Vector3> grids = new List<Vector3>();
 
     private Grid grid;
