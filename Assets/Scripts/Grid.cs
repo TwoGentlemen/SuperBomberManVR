@@ -33,8 +33,6 @@ public class Grid
     private Vector3 gridHight;
     private int step;
 
-    int x = 0; //координаты 
-    int y = 0;
 
     public int countCell_Y => 1 + (int)Vector3.Distance(gridHight, gridStart) / step; //Кол-во клеток в высоту
     public int countCell_X => 1 + (int)Vector3.Distance(gridWith, gridStart) / step; //Кол-во клеток в ширину
@@ -100,6 +98,11 @@ public class Grid
     {
 
         return cells[y,x].GetActive();
+    }
+    public bool isEmpty(Vector3 pos)
+    {
+        var buf = GetIndexCell(pos);
+        return cells[buf.y,buf.x].GetActive();
     }
 
     public void  ActiveOrNotCell(Vector3 posObj, bool isActive)

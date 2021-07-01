@@ -51,45 +51,26 @@ public class SpawnBomb : MonoBehaviour
 
     public void PlantBomb()
     {
-        //определение позиции для бомбы
-        Vector3 bombPosition = CreateBombPosition();
-        //создание бомбы
-        Instantiate(bomb, bombPosition, Quaternion.identity);
-
-    }
-
-
-    private Vector3 CreateBombPosition()
-    {
-        ////округляю позицию игрока чтобы получилось сделать по клеточкам
-        Vector3 playerPosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+       
 
         //позиция бомбы с учетом того, куда смотрит игрок
-        Vector3 bombPosition = playerPosition + transform.forward * 2;
-        //исключение диагональных позиций
-        //если позиция из списка возможных, оставляем ее
-        if (grids.Contains(bombPosition))
-        {
-            return bombPosition;
-        }
-        else
-        {
-            int index=-1;
-            float minDistance = float.MaxValue;
-            //если позиция неправильная, находим позицию среди возможных, самую близкую к получившийся до этого позиции
-            for (int i=0;i<grids.Count;i++)
-            {
-                float newDistance = Vector3.Distance(grids[i], bombPosition);
-                if (newDistance < minDistance)
-                {
-                    index = i;
-                    minDistance = newDistance;
-                }
-            }
+        Vector3 bombPosition = transform.position + transform.forward * (step);
 
-            return grids[index];
+        var indexCelllBomb = grid.GetIndexCell(bombPosition); //Определяем индекс клетки в которой будет находится бомба
+        var indexCellPlayer = grid.GetIndexCell(transform.position); //Определяем индекс клетки в которой находится игрок
+
+        if (!grid.isEmpty(indexCelllBomb.x, indexCelllBomb.y)) { return;} //Проверяем клетку на пустоту
+
+        var sum = indexCelllBomb+indexCellPlayer;
+
+        if(sum.x == 2*indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
+        {
+            Instantiate(bomb, grid.GetPos(indexCelllBomb.x,indexCelllBomb.y), Quaternion.identity);
         }
+      
+
     }
+
 
 
 
