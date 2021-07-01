@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099113280559207893}
   m_Layer: 0
-  m_Name: bomba_all(2)
+  m_Name: bomba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
