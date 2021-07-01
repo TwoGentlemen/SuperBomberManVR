@@ -34,7 +34,7 @@ public class Grid
 
         public void SetObject(GameObject gameObj)
         {
-            _gameObj= gameObj;
+            _gameObj = gameObj;
         }
     }
 
