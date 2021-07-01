@@ -66,10 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireLength: 1
-  step: 2
-  gridStart: {fileID: 0}
-  gridWith: {fileID: 0}
-  gridHight: {fileID: 0}
+  time: 3
 --- !u!1 &7741452455840036980
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,16 +5,26 @@ namespace GameTest {
     {
         private Vector3 position = Vector3.zero;
         private GameObject objectInCell = null;
+        private GameObject marker = null;
+
+        MeshRenderer meshMarker;
 
         public Cell(Vector3 pos)
         {
             position = pos;
         }
-
-        public bool GetActive()
+        public Cell(Vector3 pos,GameObject _marker)
         {
-            if (objectInCell) { return true; }
-            return false;
+            position = pos;
+            marker = _marker;
+
+            InicializeMarker();
+        }
+
+        public bool isEmptyCell()
+        {
+            if (objectInCell != null) { return false; }
+            return true;
         }
 
         public Vector3 GetPosition()
@@ -24,14 +34,32 @@ namespace GameTest {
 
         public GameObject GetObject()
         {
-            var obj = objectInCell;
-            objectInCell = null;
-            return obj;
+            return objectInCell;
         }
 
         public void SetObject(GameObject gameObj)
         {
             objectInCell = gameObj;
+            ChangeMarker();
+        }
+
+        private void InicializeMarker()
+        {
+            if(marker == null) { return; }
+            meshMarker = marker.GetComponent<MeshRenderer>();
+        }
+
+        private void ChangeMarker()
+        {
+            if(marker == null || meshMarker == null) { return;}
+            if (objectInCell)
+            {
+                meshMarker.material.color = Color.red;
+            }
+            else
+            {
+                meshMarker.material.color = Color.green;
+            }
         }
     }
 }
