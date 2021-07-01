@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace GameTest { 
+
     public class BehaviourExplosion : MonoBehaviour
     {
 
@@ -31,4 +31,4 @@ namespace GameTest {
             Destroy(obj);
         }
     } 
-}
+

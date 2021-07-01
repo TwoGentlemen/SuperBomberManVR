@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameTest { 
+
     public class Cell 
     {
         private Vector3 position = Vector3.zero;
@@ -62,4 +62,4 @@ namespace GameTest {
             }
         }
     }
-}
+

@@ -5,11 +5,9 @@ using UnityEngine.Events;
 
 public class ControllPlayerPC : MonoBehaviour
 {
-    [SerializeField] private Camera cameraPl; //Êàìåðà èãðîêà
-    [SerializeField] private float moveSpeed = 3f; //Ñêîðîñòü ïåðåäâèæåíèÿ
-    [SerializeField] private float mouseSpeed = 50f; //×óâñòâèòåëüíîñòü ìûøè
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform spawnPointShoot;
+    [SerializeField] private Camera cameraPl; 
+    [SerializeField] private float moveSpeed = 3f; 
+    [SerializeField] private float mouseSpeed = 50f; 
     [SerializeField] UnityEvent onShoot;
 
     private Rigidbody _rb;
@@ -44,21 +42,8 @@ public class ControllPlayerPC : MonoBehaviour
     {
         inputRotate *= mouseSpeed * Time.deltaTime;
 
-        cameraPl.transform.Rotate(-inputRotate.y, 0, 0);//Ïîâîðîò êàìåðû
-        transform.Rotate(0, inputRotate.x, 0); //Ïîâîðîò òåëà èãðîêà
+        cameraPl.transform.Rotate(-inputRotate.y, 0, 0);
+        transform.Rotate(0, inputRotate.x, 0); 
     }
 
-    private void Shoot()
-    {
-        
-        //var _bullet = Instantiate(bullet, spawnPointShoot.position, Quaternion.identity);
-        //var rb = _bullet.GetComponent<Rigidbody>();
-        //var explosion = _bullet.GetComponent<BombExplosion>();
-
-        //if (!rb || !explosion) { Debug.LogError("Not found Rigidbody or BombExplosion"); return; }
-
-
-        //explosion.ExplosionActivate(3); //Àêòèâèðóåì âçðûâ ñíàðÿäà ïî òàéìåðó
-        //rb.AddForce(transform.forward * 20, ForceMode.Impulse);
-    }
 }

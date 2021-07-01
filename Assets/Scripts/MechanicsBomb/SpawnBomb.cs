@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameTest { 
+
 public class SpawnBomb : MonoBehaviour
 {
     [SerializeField] private GameObject bomb;
@@ -36,5 +36,4 @@ public class SpawnBomb : MonoBehaviour
 
 
 
-}
 }

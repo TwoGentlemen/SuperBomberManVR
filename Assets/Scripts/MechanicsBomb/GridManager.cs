@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameTest { 
+
     public class GridManager : MonoBehaviour
     {
         public static GridManager instance;
@@ -69,6 +69,9 @@ namespace GameTest {
         }
         public void SetObjectInCell(GameObject _gameObject, Vector2Int index)
         {
+            if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
+            { Debug.LogWarning("Вы вышли за пределы сетки"); return; }
+
             cells[index.y, index.x].SetObject(_gameObject);
         }
 
@@ -92,16 +95,23 @@ namespace GameTest {
 
         public Vector3 GetPosCell(Vector2Int index)
         {
+            if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
+            { Debug.LogWarning("Вы вышли за пределы сетки"); return Vector3.zero; }
+
             return cells[index.y, index.x].GetPosition();
         }
 
         public bool isEmptyCell(Vector2Int index)
         {
+            if(index.x<0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y) { return false;}
             return cells[index.y,index.x].isEmptyCell();
         }
 
         public GameObject GetObjectInCell(Vector2Int index)
         {
+            if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
+            { Debug.LogWarning("Вы вышли за пределы сетки"); return null; }
+
             return cells[index.y,index.x].GetObject();
         }
 
@@ -111,25 +121,25 @@ namespace GameTest {
 
             for (int i = 1; i <= radius; i++)
             {
-                if(index.x+i <= countCell_X)
+                if(index.x+i < countCell_X)
                 {
                     //TODO
                     behaviourExplosion.SetBehavioutObject(cells[index.y,index.x+i].GetObject());
                 }
 
-                if (index.x - i <= countCell_X && index.x - i >=0)
+                if (index.x - i < countCell_X && index.x - i >=0)
                 {
                     //TODO
                     behaviourExplosion.SetBehavioutObject(cells[index.y, index.x - i].GetObject());
                 }
 
-                if (index.y + i <= countCell_Y)
+                if (index.y + i < countCell_Y)
                 {
                     //TODO
                     behaviourExplosion.SetBehavioutObject(cells[index.y+i, index.x].GetObject());
                 }
 
-                if (index.y - i <= countCell_Y && index.y - i >= 0)
+                if (index.y - i < countCell_Y && index.y - i >= 0)
                 {
                     //TODO
                     behaviourExplosion.SetBehavioutObject(cells[index.y-i, index.x].GetObject());
@@ -137,4 +147,4 @@ namespace GameTest {
             }
         }
     }
-}
+

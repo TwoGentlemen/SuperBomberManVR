@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameTest { 
+
 public class BombExplossion : MonoBehaviour
 {
     [Header("Характеристики бомбы")]
@@ -22,4 +22,4 @@ public class BombExplossion : MonoBehaviour
         Destroy(gameObject);
     }
 }  
-    }
+

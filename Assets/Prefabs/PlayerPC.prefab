@@ -129,8 +129,9 @@ GameObject:
   - component: {fileID: 4995665373846452978}
   - component: {fileID: 4995665373846452979}
   - component: {fileID: 910184152309519098}
+  - component: {fileID: 242187185027067028}
   - component: {fileID: 7815632524911497476}
-  - component: {fileID: 1066356289}
+  - component: {fileID: 242187185027067029}
   m_Layer: 0
   m_Name: PlayerPC
   m_TagString: Player
@@ -146,8 +147,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4995665373846452976}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.01, y: 1.97, z: 17.04}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalPosition: {x: 1.06, y: 1.97, z: 17.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5217081703946321567}
   m_Father: {fileID: 0}
@@ -232,6 +233,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &242187185027067028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995665373846452976}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03314fd86d7b484da8c62cb0d735e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 1615205416163676015, guid: 383448c20814343459099abbdffb830f, type: 3}
 --- !u!114 &7815632524911497476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,15 +259,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPl: {fileID: 7698152895337235876}
-  moveSpeed: 100
+  moveSpeed: 150
   mouseSpeed: 5
-  bullet: {fileID: 0}
-  spawnPointShoot: {fileID: 0}
   onShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1066356289}
-        m_TargetAssemblyTypeName: CreateBomb, Assembly-CSharp
+      - m_Target: {fileID: 242187185027067028}
+        m_TargetAssemblyTypeName: GameTest.SpawnBomb, Assembly-CSharp
         m_MethodName: PlantBomb
         m_Mode: 1
         m_Arguments:
@@ -264,7 +276,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1066356289
+--- !u!114 &242187185027067029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,12 +285,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4995665373846452976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3502877040594fa4990ba88ddcb9e838, type: 3}
+  m_Script: {fileID: 11500000, guid: 0da7b08abf2c3834d8dad08875baee6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 1615205416163676015, guid: 95adf07f36ac1b741bc46b8a45de3d26, type: 3}
-  step: 2
-  gridStart: {fileID: 0}
-  gridWith: {fileID: 0}
-  gridHight: {fileID: 0}
-  point: {fileID: 6537694052577328551, guid: e8ad1306531f8d34baf42c3c9d7ef312, type: 3}
