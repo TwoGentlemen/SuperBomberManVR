@@ -35,6 +35,16 @@ public class LifeSystem : MonoBehaviour
 
     private void Dead()
     {
+        Debug.Log("---------GAME OWER----------");
         //сделать появление меню
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            DamagePlayer();
+            Debug.Log("Игрок ударился о врага");
+        }
     }
 }
