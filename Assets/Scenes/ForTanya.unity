@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.27379203, g: 0.35442126, b: 0.48559877, a: 1}
+  m_IndirectSpecularColor: {r: 0.27379197, g: 0.35442114, b: 0.4855985, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9655,6 +9655,24 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1087307865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7462810208452371391, guid: d6288279138011341ae06640afaf172b, type: 3}
+  m_PrefabInstance: {fileID: 718398780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1087307870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087307865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc600942c3cbb34f9b11ebabad33e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 2
 --- !u!43 &1092599080
 Mesh:
   m_ObjectHideFlags: 0
@@ -14091,7 +14109,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5010
+  m_Name: pb_Mesh-2808
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21424,6 +21442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 242187185027067028, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4995665373846452876, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
       propertyPath: m_RootOrder
       value: 4
