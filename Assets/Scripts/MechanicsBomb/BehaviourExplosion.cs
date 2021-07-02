@@ -18,7 +18,19 @@ using UnityEngine;
                 case "DestructableObject":
                     DestructibleObject(obj);
                     break;
-                case "Player":Debug.Log("Игрок попал в зону поражения!"); break;
+                case "Player":
+                {
+                    Debug.Log("Игрок попал в зону поражения!");
+                    obj.GetComponent<LifeSystem>().DamagePlayer();
+                    break;
+                }
+
+            case "Monster":
+                {
+                    Debug.Log("Монстр попал в зону поражения!");
+                    obj.GetComponent<MobLifeSystem>().AddDamage(1);
+                    break;
+                }
                 default:
                     break;
             }

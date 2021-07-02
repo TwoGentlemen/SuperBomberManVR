@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeSystem : MonoBehaviour
 {
+    //нужно реализовать показ количество жизней самому игроку
+    //делать эффект через канвас или нет?
 
-
-    //Скрипт для переделки
-
+    private Vector3 Resp;
 
     //Количество жизней
     [SerializeField] [Range(1, 100)] private int healthPoints = 3;
-    //Начальное колличество жизни
-    private int startHp;
 
-    void Start()
+
+    public void Start()
     {
-        startHp = healthPoints;
+        Resp = transform.position;
     }
 
     public void DamagePlayer()
@@ -24,18 +21,18 @@ public class LifeSystem : MonoBehaviour
 
         healthPoints -= 1;
 
-
-
-
+        // тут должен быть эффект
 
         if (healthPoints <= 0)
         {
             Dead();
+            return;
         }
+
+        transform.position = Resp;
     }
 
 
-    // Вызов меню при смерти
     private void Dead()
     {
         //сделать появление меню

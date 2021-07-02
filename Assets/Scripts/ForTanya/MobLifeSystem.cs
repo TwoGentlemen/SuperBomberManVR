@@ -9,10 +9,12 @@ public class MobLifeSystem : MonoBehaviour
     {
         healthPoints -= damage;
 
-        if (damage <= 0)
+        if (healthPoints <= 0)
         {
             Destroy(gameObject);
         }
+
+        
     }
 
 }
