@@ -35,8 +35,7 @@ public class LifeSystem : MonoBehaviour
 
     private void Dead()
     {
-        Debug.Log("---------GAME OWER----------");
-        //сделать появление меню
+       GameManager.instance.GameOwer();
     }
 
     private void OnCollisionEnter(Collision collision)

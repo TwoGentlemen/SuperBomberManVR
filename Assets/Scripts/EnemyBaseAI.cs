@@ -8,13 +8,10 @@ public class EnemyBaseAI : MonoBehaviour
     [Tooltip("Скорость перемещения персонажа")]
     [SerializeField] private int moveSpeed = 3;
 
-    private MoveObjectToGrid moveToGrid;
-
     Vector3 targetPos;
 
     private void Start()
     {
-        moveToGrid = GetComponent<MoveObjectToGrid>();
         GetNextTarget();
     }
 
@@ -48,5 +45,11 @@ public class EnemyBaseAI : MonoBehaviour
 
         transform.LookAt(rot);
         transform.Translate(dir*moveSpeed*Time.deltaTime,Space.World);
+    }
+
+    private void OnDestroy()
+    {
+        if(GameManager.instance == null) { return;}
+        GameManager.instance.DeathEnemy();
     }
 }

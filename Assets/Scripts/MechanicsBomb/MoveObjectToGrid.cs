@@ -31,4 +31,10 @@ public class MoveObjectToGrid : MonoBehaviour
         return currentIndexCell;
     }
 
+    private void OnDestroy()
+    {
+        if(GridManager.instance == null || transform == null) { return; }
+        var index = GridManager.instance.GetIndexCell(transform.position);
+        GridManager.instance.SetObjectInCell(null, index);
+    }
 }

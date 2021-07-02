@@ -27,7 +27,15 @@ using UnityEngine;
             return true;
         }
 
-        public Vector3 GetPosition()
+    public bool isEmptyCellNotPlayer()
+    {
+        if (objectInCell == null) { return true; }
+        if (objectInCell.CompareTag("Player")) { return true;}
+
+        return false;
+    }
+
+    public Vector3 GetPosition()
         {
             return position;
         }

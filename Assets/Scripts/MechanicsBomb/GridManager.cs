@@ -106,6 +106,13 @@ public class GridManager : MonoBehaviour
         return cells[index.y,index.x].isEmptyCell();
     }
 
+    public bool isEmptyCellNotPlayer(Vector2Int index)
+    {
+        if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y) { return false; }
+
+        return cells[index.y, index.x].isEmptyCellNotPlayer();
+    }
+
     public GameObject GetObjectInCell(Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
@@ -150,20 +157,20 @@ public class GridManager : MonoBehaviour
     {
         //В начале проверяем можем ли мы двигаться вперед
         var index = GetIndexCell(currentPos.position + currentPos.forward *step);
-        if (isEmptyCell(index)) { return GetPosCell(index);}
+        if (isEmptyCellNotPlayer(index)) { return GetPosCell(index);}
 
         //Проверяем можно ли пойти в лево или право (если невозможно вперед)
         //Правая ячейка
         index = GetIndexCell(currentPos.position + currentPos.right * step);
-        if (isEmptyCell(index)) { return GetPosCell(index); } 
+        if (isEmptyCellNotPlayer(index)) { return GetPosCell(index); } 
 
         //Левая ячейка
         index = GetIndexCell(currentPos.position - currentPos.right * step);
-        if (isEmptyCell(index)) { return GetPosCell(index); } 
+        if (isEmptyCellNotPlayer(index)) { return GetPosCell(index); } 
 
         //Пробуем развернуться и пойти назад
         index = GetIndexCell(currentPos.position - currentPos.forward * step);
-        if (isEmptyCell(index)) { return GetPosCell(index); }
+        if (isEmptyCellNotPlayer(index)) { return GetPosCell(index); }
 
         //Если тупик, то возвращаем текущую позицию
         return currentPos.position;

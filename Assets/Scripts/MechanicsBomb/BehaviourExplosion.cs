@@ -25,7 +25,7 @@ using UnityEngine;
                     break;
                 }
 
-            case "Monster":
+            case "Enemy":
                 {
                     Debug.Log("Монстр попал в зону поражения!");
                     obj.GetComponent<MobLifeSystem>().AddDamage(1);
