@@ -1,39 +1,58 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-
-public class SpawnBomb : MonoBehaviour
+namespace GameTest
 {
-    [SerializeField] private GameObject bomb;
-   
+    public class SpawnBomb : MonoBehaviour
+    {
+        [SerializeField] private GameObject bomb;
 
-    public void PlantBomb()
-    { 
-        Vector3 bombPosition = transform.position + transform.forward * 2; //позиция бомбы с учетом того, куда смотрит игрок
+        public float coolDownTime = 5;
+        public float coolDownTimer = 0f;
 
-        var indexCelllBomb = GridManager.instance.GetIndexCell(bombPosition); //Определяем индекс клетки в которой будет находится бомба
-        var indexCellPlayer = GridManager.instance.GetIndexCell(transform.position); //Определяем индекс клетки в которой находится игрок
 
-        if (!GridManager.instance.isEmptyCell(indexCelllBomb))
-        {Debug.Log("Клетка занята!"); return;} 
 
-        var sum = indexCelllBomb+indexCellPlayer;
-
-        if(sum.x == 2*indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
+        private void Update()
         {
-            var bom = Instantiate(bomb, GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
-            GridManager.instance.SetObjectInCell(bom);
+
+            if (coolDownTimer > 0)
+            {
+                coolDownTimer -= Time.deltaTime;
+            }
+
+            if (coolDownTimer < 0)
+            {
+                coolDownTimer = 0;
+            }
         }
-        else
+
+
+        public void PlantBomb()
         {
-            Debug.Log("Нельзя ставить по диагонали!");
+            if (coolDownTimer > 0) return;
+
+
+            Vector3 bombPosition = transform.position + transform.forward * 2; //позиция бомбы с учетом того, куда смотрит игрок
+
+            var indexCelllBomb = GridManager.instance.GetIndexCell(bombPosition); //Определяем индекс клетки в которой будет находится бомба
+            var indexCellPlayer = GridManager.instance.GetIndexCell(transform.position); //Определяем индекс клетки в которой находится игрок
+
+            if (!GridManager.instance.isEmptyCell(indexCelllBomb))
+            { Debug.Log("Клетка занята!"); return; }
+
+            var sum = indexCelllBomb + indexCellPlayer;
+
+            if (sum.x == 2 * indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
+            {
+                var bom = Instantiate(bomb, GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
+                GridManager.instance.SetObjectInCell(bom);
+                coolDownTimer = coolDownTime;
+            }
+            else
+            {
+                Debug.Log("Нельзя ставить по диагонали!");
+            }
         }
-      
+
 
     }
-
-
-
-
-
 }
