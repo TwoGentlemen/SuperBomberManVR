@@ -174,7 +174,25 @@ public class GridManager : MonoBehaviour
 
         //Если тупик, то возвращаем текущую позицию
         return currentPos.position;
+    }
 
+
+    public List<Vector2Int> GetObstacle()
+    {
+        List<Vector2Int> result = new List<Vector2Int>();
+
+        for (int i = 0; i < countCell_Y; i++)
+            for (int j = 0; j < countCell_X; j++)
+            {
+                GameObject obj = GetObjectInCell(new Vector2Int(i, j));
+
+                if (obj != null && obj.CompareTag("DestructableObject"))
+                {
+                    result.Add(new Vector2Int(i, j));
+                }
+            }
+
+        return result;
     }
 }
 

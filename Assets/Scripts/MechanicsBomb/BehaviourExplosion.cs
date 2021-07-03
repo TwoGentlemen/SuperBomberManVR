@@ -16,7 +16,7 @@ using UnityEngine;
             switch (obj.tag)
             {
                 case "DestructableObject":
-                    DestructibleObject(obj);
+                    obj.GetComponent<BonusDestrWall>().DestroyWall();
                     break;
                 case "Player":
                 {
