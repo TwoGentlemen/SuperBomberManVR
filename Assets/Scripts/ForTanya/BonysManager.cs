@@ -9,9 +9,9 @@ public class BonysManager : MonoBehaviour
 
     [Header("Ссылки на бонусы")]
     [SerializeField] private GameObject bonusSpeed;
-    [SerializeField] private GameObject bonusIceCream;
-    [SerializeField] private GameObject bonusNotCD;
     [SerializeField] private GameObject bonusNewBomb;
+    [SerializeField] private GameObject bonusNotCD;
+    [SerializeField] private GameObject bonusAddBomb;
     [SerializeField] private GameObject bonusKickBomb;
 
     [Header("Настрофки бонусов")]
@@ -26,9 +26,9 @@ public class BonysManager : MonoBehaviour
     {
         _bonuses = new Dictionary<float, GameObject>();
         _bonuses.Add(10, bonusNewBomb);
-        _bonuses.Add(15, bonusKickBomb);
+        _bonuses.Add(15, bonusAddBomb);
         _bonuses.Add(20, bonusNotCD);
-        _bonuses.Add(25, bonusIceCream);
+        _bonuses.Add(25, bonusKickBomb);
         _bonuses.Add(30, bonusSpeed);
     }
 
