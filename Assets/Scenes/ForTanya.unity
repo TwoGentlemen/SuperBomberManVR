@@ -21562,15 +21562,15 @@ PrefabInstance:
     - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
       propertyPath: bonusSpeed
       value: 
-      objectReference: {fileID: 286761463290959453, guid: 493f6fef5cae2be4aaf156541d5367c5, type: 3}
+      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
     - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
       propertyPath: bonusAddBomb
       value: 
-      objectReference: {fileID: 6978486260091046215, guid: 66110a2f808180544a74c14700b6a447, type: 3}
+      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
     - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
       propertyPath: bonusNewBomb
       value: 
-      objectReference: {fileID: 734615466676394792, guid: 4b251d0fab6a6e6458d832f044c882f1, type: 3}
+      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
     - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
       propertyPath: bonusIceCream
       value: 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 542723786426621555}
   m_Layer: 0
   m_Name: icecream
-  m_TagString: DestructableObject
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
