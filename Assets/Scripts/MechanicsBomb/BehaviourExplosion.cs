@@ -41,7 +41,7 @@ public class BehaviourExplosion : MonoBehaviour
     private void DestructibleBonus(GameObject obj)
     {
         GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(obj.transform.position));
-        Destroy(obj);
+        Destroy(obj); 
     }
 }
 

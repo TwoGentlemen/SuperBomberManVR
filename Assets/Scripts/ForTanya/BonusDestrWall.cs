@@ -21,8 +21,8 @@ public class BonusDestrWall : MonoBehaviour
 
         if (_bonus != null)
         {
-            Instantiate(_bonus, GridManager.instance.GetPosCell(transform.position), Quaternion.identity);
-            GridManager.instance.SetObjectInCell(_bonus, GridManager.instance.GetIndexCell(transform.position));
+            var bon = Instantiate(_bonus, GridManager.instance.GetPosCell(transform.position), Quaternion.identity);
+            GridManager.instance.SetObjectInCell(bon, GridManager.instance.GetIndexCell(transform.position));
         }  
 
         Destroy(gameObject);
