@@ -9,7 +9,7 @@ public class BonusDestrWall : MonoBehaviour
 
     public void Start()
     {
-        _position = new Vector3(transform.position.x,transform.position.y+1,transform.position.z);
+       
     }
 
     public void SetBonus(GameObject bonus)
@@ -23,7 +23,7 @@ public class BonusDestrWall : MonoBehaviour
 
         if (_bonus != null)
         {
-            Instantiate(_bonus, _position, Quaternion.identity);
+            Instantiate(_bonus, GridManager.instance.GetPosCell(transform.position), Quaternion.identity);
             GridManager.instance.SetObjectInCell(_bonus, GridManager.instance.GetIndexCell(transform.position));
         }  
     }
