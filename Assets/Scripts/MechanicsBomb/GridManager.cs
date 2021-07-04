@@ -188,7 +188,7 @@ public class GridManager : MonoBehaviour
 
                 if (obj != null && obj.CompareTag("DestructableObject"))
                 {
-                    result.Add(new Vector2Int(i, j));
+                    result.Add(new Vector2Int(j, i));
                 }
             }
 

@@ -64,7 +64,7 @@ public class BonysManager : MonoBehaviour
             if(wall == null) { return;}
             wall.GetComponent<BonusDestrWall>().SetBonus(bonus);
 
-            //Debug.Log("бонус на позиции:" + GridManager.instance.GetPosCell(walls[cell]));
+            Debug.Log("бонус на позиции:" + GridManager.instance.GetPosCell(walls[cell]));
         }
     }
 
