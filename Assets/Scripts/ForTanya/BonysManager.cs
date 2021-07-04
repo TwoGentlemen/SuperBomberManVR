@@ -4,6 +4,9 @@ using Random = UnityEngine.Random;
 
 public class BonysManager : MonoBehaviour
 {
+    private System.Random rand;
+    private Dictionary<float, GameObject> _bonuses;
+   
     [Header("Ссылки на бонусы")]
     [SerializeField] private GameObject bonusSpeed;
     [SerializeField] private GameObject bonusNewBomb;
@@ -12,12 +15,19 @@ public class BonysManager : MonoBehaviour
     //[SerializeField] private GameObject bonusKickBomb;
 
     [Header("Настрофки бонусов")]
-    [SerializeField] private int _bonusQuantity = 7;
+    [SerializeField] private int _bonusQuantity;
+    [SerializeField] [Range(1,20)] private int _maxBonusQuantity=10;
+    [SerializeField] private int speedProbability = 16;
+    [SerializeField] private int newBombProbability = 22;
+    [SerializeField] private int iceCreamProbability = 21;
+    [SerializeField] private int addBombProbability = 15;
+    //[SerializeField] private int kickBombProbability = 15;
 
-    private Dictionary<float, GameObject> _bonuses;
 
     void Start()
     {
+        rand = new System.Random();
+        _bonusQuantity = rand.Next(3, _maxBonusQuantity+1);
         //создается словарь с обьектами и вероятностями
         CreateProbability();
         //расставляем бонусы
@@ -28,16 +38,16 @@ public class BonysManager : MonoBehaviour
     {
         //не окончательные варианты вероятности
         _bonuses = new Dictionary<float, GameObject>();
-        _bonuses.Add(22, bonusNewBomb);
-        _bonuses.Add(15, bonusAddBomb);
-        //_bonuses.Add(20, bonusKickBomb);
-        _bonuses.Add(21, bonusIceCream);
-        _bonuses.Add(16, bonusSpeed);
+        _bonuses.Add(newBombProbability, bonusNewBomb);
+        _bonuses.Add(addBombProbability, bonusAddBomb);
+        //_bonuses.Add(kickBombProbability, bonusKickBomb);
+        _bonuses.Add(iceCreamProbability, bonusIceCream);
+        _bonuses.Add(speedProbability, bonusSpeed);
     }
 
     private void SetBonyses()
     {
-        System.Random rand = new System.Random();
+
         GameObject bonus, wall;
         List<int> occupiedCells = new List<int>();
 
