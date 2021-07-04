@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireLength: 1
   time: 2
+  effect: {fileID: 8426368327295778708, guid: 4eb4360efdbbea542b99389aa8a3c880, type: 3}
 --- !u!1 &7741452455840036980
 GameObject:
   m_ObjectHideFlags: 0

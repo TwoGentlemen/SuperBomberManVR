@@ -7,8 +7,8 @@ public class BombExplossion : MonoBehaviour
     [SerializeField] private int fireLength = 1;   
     [SerializeField] private float time = 3;
 
-    ////[Header("Ёффекты при взрыве")]
-    ////[SerializeField] private GameObject effect; 
+    [Header("Ёффекты при взрыве")]
+    [SerializeField] private GameObject effect; 
 
     private void Start()
     {
@@ -19,6 +19,8 @@ public class BombExplossion : MonoBehaviour
     {
         GridManager.instance.Explosion(transform.position,fireLength);
         GridManager.instance.SetObjectInCell(null,GridManager.instance.GetIndexCell(gameObject.transform.position));
+
+        Instantiate(effect, transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 }  
