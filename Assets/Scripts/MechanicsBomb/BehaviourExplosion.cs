@@ -2,9 +2,6 @@ using UnityEngine;
 
     public class BehaviourExplosion : MonoBehaviour
     {
-
-        // Скопировала скрипт на переделку на будущее, вдруг пригодится
-
         public void SetBehavioutObject(GameObject obj)
         {
             if(obj == null) { return;}
@@ -12,7 +9,7 @@ using UnityEngine;
             switch (obj.tag)
             {
                 case "DestructableObject":
-                    obj.GetComponent<BonusDestrWall>().DestroyWall();
+                    DestructibleObject(obj);                 
                     break;
                 case "Player":
                 {
@@ -34,9 +31,8 @@ using UnityEngine;
 
         private void DestructibleObject(GameObject obj)
         {
-            var index = GridManager.instance.GetIndexCell(obj.transform.position);
-            GridManager.instance.SetObjectInCell(null,index);
-            Destroy(obj);
+            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(obj.transform.position));
+            obj.GetComponent<BonusDestrWall>().DestroyWall();
         }
     } 
 

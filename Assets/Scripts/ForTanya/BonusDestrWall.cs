@@ -24,7 +24,7 @@ public class BonusDestrWall : MonoBehaviour
         if (_bonus != null)
         {
             Instantiate(_bonus, _position, Quaternion.identity);
-        }
+            GridManager.instance.SetObjectInCell(_bonus, GridManager.instance.GetIndexCell(transform.position));
+        }  
     }
-
 }

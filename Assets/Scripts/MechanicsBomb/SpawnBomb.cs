@@ -6,14 +6,20 @@ public class SpawnBomb : MonoBehaviour
 
     private float coolDownTime = 5;
     private float coolDownTimer = 0f;
+    private bool isTick = true;
 
-    public void SetTimer(float timer)
+    public void TimerStop()
     {
-        coolDownTimer = timer;
+        isTick = false;
+        coolDownTimer = 0f;
     }
 
     private void Update()
     {
+        if (!isTick)
+        {
+            return;
+        }
 
         if (coolDownTimer > 0)
         {
@@ -24,6 +30,7 @@ public class SpawnBomb : MonoBehaviour
         {
             coolDownTimer = 0;
         }
+
     }
 
 
@@ -46,11 +53,17 @@ public class SpawnBomb : MonoBehaviour
         {
             var bom = Instantiate(bomb, GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
             GridManager.instance.SetObjectInCell(bom);
-            coolDownTimer = coolDownTime;
+
+            if (isTick)
+            {
+                coolDownTimer = coolDownTime;
+            }
+            
         }
         else
         {
             Debug.Log("Нельзя ставить по диагонали!");
         }
     }
+
 }

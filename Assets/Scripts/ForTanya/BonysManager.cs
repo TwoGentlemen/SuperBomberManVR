@@ -4,9 +4,6 @@ using Random = UnityEngine.Random;
 
 public class BonysManager : MonoBehaviour
 {
-
-    private Dictionary<float, GameObject> _bonuses;
-
     [Header("Ссылки на бонусы")]
     [SerializeField] private GameObject bonusSpeed;
     [SerializeField] private GameObject bonusNewBomb;
@@ -16,6 +13,8 @@ public class BonysManager : MonoBehaviour
 
     [Header("Настрофки бонусов")]
     [SerializeField] private int _bonusQuantity = 7;
+
+    private Dictionary<float, GameObject> _bonuses;
 
     void Start()
     {
@@ -27,25 +26,25 @@ public class BonysManager : MonoBehaviour
 
     private void CreateProbability()
     {
+        //не окончательные варианты вероятности
         _bonuses = new Dictionary<float, GameObject>();
-        _bonuses.Add(10, bonusNewBomb);
+        _bonuses.Add(22, bonusNewBomb);
         _bonuses.Add(15, bonusAddBomb);
         //_bonuses.Add(20, bonusKickBomb);
-        _bonuses.Add(25, bonusIceCream);
-        _bonuses.Add(30, bonusSpeed);
+        _bonuses.Add(21, bonusIceCream);
+        _bonuses.Add(16, bonusSpeed);
     }
 
     private void SetBonyses()
     {
+        System.Random rand = new System.Random();
         GameObject bonus, wall;
+        List<int> occupiedCells = new List<int>();
 
         //все клетки с препятствиями
         List<Vector2Int> walls=GridManager.instance.GetObstacle();
-        
-        System.Random rand = new System.Random();
-        int cell = rand.Next(0, walls.Count);
-        List<int> occupiedCells = new List<int>();
 
+        int cell = rand.Next(0, walls.Count);
 
         for (int i = 0; i < _bonusQuantity; i++)
         {
@@ -55,11 +54,10 @@ public class BonysManager : MonoBehaviour
                 cell = rand.Next(0, walls.Count);
             }
             occupiedCells.Add(cell);
-            
-            //Debug.Log(cell);
 
             //генерация бонуса
             bonus = ChooseBonus();
+
             //устанавливаем бонус
             wall = GridManager.instance.GetObjectInCell(walls[cell]);
             wall.GetComponent<BonusDestrWall>().SetBonus(bonus);
@@ -68,8 +66,6 @@ public class BonysManager : MonoBehaviour
         }
     }
 
-
-    //генерация бонуса
     private GameObject ChooseBonus()
     {
         float total = 0;
@@ -94,7 +90,4 @@ public class BonysManager : MonoBehaviour
         }
         return null;
     }
-
-
-
 }

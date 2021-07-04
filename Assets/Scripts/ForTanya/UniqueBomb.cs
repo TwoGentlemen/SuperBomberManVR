@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] [Range(1, 3)] private int fireLength = 3;
+    [SerializeField] private int fireLength = 1;
     
     // Добавить анимацию
 

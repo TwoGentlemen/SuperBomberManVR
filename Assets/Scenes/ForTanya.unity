@@ -20861,30 +20861,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &2105284969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
-  m_PrefabInstance: {fileID: 2057248798}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2105284970
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105284969}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 745bfa0f53c03d542899b9082a085af3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &2106142631
 Mesh:
   m_ObjectHideFlags: 0
@@ -21610,7 +21586,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 668751047, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4995665373846452876, guid: 30145f1c3e1eb8543b50dc63278d3d31, type: 3}
       propertyPath: m_RootOrder

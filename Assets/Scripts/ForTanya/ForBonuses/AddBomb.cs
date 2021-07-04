@@ -4,20 +4,15 @@ public class AddBomb : MonoBehaviour
 {
     public readonly float _probability = 15;
 
-    void Start()
-    {
-        //сделать анимацию движения 
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
-
-        GameObject ob = collision.gameObject;
-        if (ob.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            ob.GetComponent<SpawnBomb>().SetTimer(0);
+            collision.gameObject.GetComponent<SpawnBomb>().TimerStop();
         }
+
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+        Destroy(gameObject);
     }
 
 }

@@ -2,22 +2,17 @@ using UnityEngine;
 
 public class NewBomb : MonoBehaviour
 {
-    public readonly float _probability = 10;
+    public readonly float _probability = 25;
     [SerializeField] private GameObject bomb;
 
-    void Start()
-    {
-        //сделать анимацию движения
-    }
-
     private void OnCollisionEnter(Collision collision)
-    {
-        Destroy(gameObject);
-
-        GameObject ob = collision.gameObject;
-        if (ob.CompareTag("Player"))
+    { 
+        if (collision.gameObject.CompareTag("Player"))
         {
            //как то установить в руку игрока новую бомбу
         }
+
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+        Destroy(gameObject);
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 public class BombExplossion : MonoBehaviour
 {
     [Header("’арактеристики бомбы")]
-    [SerializeField] [Range(1, 3)] private int fireLength = 3; //радиус взрыва   
+    [SerializeField] private int fireLength = 1;   
     [SerializeField] private float time = 3;
-    ////[Space(5)]
+
     ////[Header("Ёффекты при взрыве")]
-    ////[SerializeField] private GameObject effect; // эффект взрыва
+    ////[SerializeField] private GameObject effect; 
 
     private void Start()
     {

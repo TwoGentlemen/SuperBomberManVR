@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3470023503276806614}
   - component: {fileID: 1712221853206111516}
   - component: {fileID: 7771750723389438419}
-  - component: {fileID: 563863472467383540}
+  - component: {fileID: 2105284970}
+  - component: {fileID: 2105284971}
   m_Layer: 0
   m_Name: icecream
   m_TagString: Untagged
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6afd82190707844a86f5dadc36df966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &563863472467383540
+--- !u!95 &2105284970
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 919847872095929545}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 745bfa0f53c03d542899b9082a085af3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,3 +116,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &2105284971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919847872095929545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020427302, y: 0.0204273, z: 0.0734662}
+  m_Center: {x: 9.313226e-10, y: 0, z: 0.009997037}

@@ -2,23 +2,19 @@ using UnityEngine;
 
 public class AddSpeed : MonoBehaviour
 {
-    public readonly float _probability = 30;
-    [SerializeField]private float newspeed = 200;
-
-    void Start()
-    {
-        //сделать анимацию движения 
-    }
+    public readonly float _probability = 15;
+    [SerializeField]private float newspeed = 50;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
 
-        GameObject ob = collision.gameObject;
-        if (ob.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            ob.GetComponent<ControllPlayerPC>().SetSpeed(newspeed);
+            collision.gameObject.GetComponent<ControllPlayerPC>().AddSpeed(newspeed);
         }
+
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+        Destroy(gameObject);
     }
 
 

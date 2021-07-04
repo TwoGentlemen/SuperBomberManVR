@@ -2,24 +2,16 @@ using UnityEngine;
 
 public class IceCream : MonoBehaviour
 {
-    public readonly float _probability = 25;
-
-    void Start()
-    {
-        //сделать анимацию движения 
-    }
-
+    public readonly float _probability = 20;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
-
-        GameObject ob = collision.gameObject;
-        if (ob.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             //сделать добавление очков, когда будет система очков
         }
 
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+        Destroy(gameObject);
     }
-
 }
