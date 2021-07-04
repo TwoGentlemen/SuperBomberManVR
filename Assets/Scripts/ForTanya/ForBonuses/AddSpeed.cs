@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class AddSpeed : MonoBehaviour
 {
-    public readonly float _probability = 15;
     [SerializeField]private float newspeed = 50;
 
     private void OnCollisionEnter(Collision collision)

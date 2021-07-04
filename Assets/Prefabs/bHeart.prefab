@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2156194524812975575}
   - component: {fileID: 3045432710891934322}
   - component: {fileID: 983890986331629240}
+  - component: {fileID: 4183115212547513413}
+  - component: {fileID: 1381477157521427179}
   m_Layer: 0
   m_Name: bHeart
   m_TagString: Untagged
@@ -83,3 +85,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4183115212547513413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632422732747425645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a516743c46a9b74a9951b14f9978dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1381477157521427179
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632422732747425645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.024119586, y: 0.048627745, z: 0.04725267}
+  m_Center: {x: 0, y: -0.00021521287, z: 0.023707964}

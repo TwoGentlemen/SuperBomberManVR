@@ -21563,6 +21563,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
+      propertyPath: bonusSpeed
+      value: 
+      objectReference: {fileID: 286761463290959453, guid: 493f6fef5cae2be4aaf156541d5367c5, type: 3}
+    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
+      propertyPath: bonusAddBomb
+      value: 
+      objectReference: {fileID: 6978486260091046215, guid: 66110a2f808180544a74c14700b6a447, type: 3}
+    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
+      propertyPath: bonusNewBomb
+      value: 
+      objectReference: {fileID: 1632422732747425645, guid: aafb711fcb5016245bfe970437fd23ca, type: 3}
+    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
+      propertyPath: addBombProbability
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
 --- !u!1001 &4995665373418875725

@@ -6,20 +6,17 @@ public class SpawnBomb : MonoBehaviour
 
     private float coolDownTime = 5;
     private float coolDownTimer = 0f;
+    private int bombQuantity = 0;
+    private int bombQuantityInRow = 1;
     private bool isTick = true;
 
-    public void TimerStop()
+    public void AddBombQuantityInRow()
     {
-        isTick = false;
-        coolDownTimer = 0f;
+        bombQuantityInRow++;
     }
 
     private void Update()
     {
-        if (!isTick)
-        {
-            return;
-        }
 
         if (coolDownTimer > 0)
         {
@@ -53,12 +50,12 @@ public class SpawnBomb : MonoBehaviour
         {
             var bom = Instantiate(bomb, GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
             GridManager.instance.SetObjectInCell(bom);
+            bombQuantity++;
 
-            if (isTick)
+            if (bombQuantity % bombQuantityInRow == 0)
             {
                 coolDownTimer = coolDownTime;
-            }
-            
+            }         
         }
         else
         {
