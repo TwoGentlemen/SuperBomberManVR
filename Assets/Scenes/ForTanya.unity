@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.27379197, g: 0.35442114, b: 0.4855985, a: 1}
+  m_IndirectSpecularColor: {r: 0.27379203, g: 0.35442126, b: 0.48559877, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21559,22 +21559,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyBonusManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
-      propertyPath: bonusSpeed
-      value: 
-      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
-    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
-      propertyPath: bonusAddBomb
-      value: 
-      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
-    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
-      propertyPath: bonusNewBomb
-      value: 
-      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
-    - target: {fileID: 8584567351728723823, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
-      propertyPath: bonusIceCream
-      value: 
-      objectReference: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64376ffdbcdc73e4faece6f4cf5bdc42, type: 3}
 --- !u!1001 &4995665373418875725

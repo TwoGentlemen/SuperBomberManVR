@@ -42,7 +42,7 @@ public class BonysManager : MonoBehaviour
         List<int> occupiedCells = new List<int>();
 
         //все клетки с препятствиями
-        List<Vector2Int> walls=GridManager.instance.GetObstacle();
+        List<Vector2Int> walls = GridManager.instance.GetObstacle();
 
         int cell = rand.Next(0, walls.Count);
 
@@ -59,7 +59,9 @@ public class BonysManager : MonoBehaviour
             bonus = ChooseBonus();
 
             //устанавливаем бонус
-            wall = GridManager.instance.GetObjectInCell(walls[cell]);
+            wall = GridManager.instance.GetObjectInCell(walls[cell]); 
+
+            if(wall == null) { return;}
             wall.GetComponent<BonusDestrWall>().SetBonus(bonus);
 
             //Debug.Log("бонус на позиции:" + GridManager.instance.GetPosCell(walls[cell]));

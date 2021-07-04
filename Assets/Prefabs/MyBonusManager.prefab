@@ -43,9 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54320211d2aef9d47b001d6ebf72e159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusSpeed: {fileID: 0}
-  bonusIceCream: {fileID: 0}
-  bonusNotCD: {fileID: 0}
-  bonusNewBomb: {fileID: 0}
-  bonusKickBomb: {fileID: 0}
+  bonusSpeed: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
+  bonusNewBomb: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
+  bonusIceCream: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
+  bonusAddBomb: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
   _bonusQuantity: 7

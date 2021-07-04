@@ -69,7 +69,7 @@ public class GridManager : MonoBehaviour
     public void SetObjectInCell(GameObject _gameObject, Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки"); return; }
+        { Debug.LogWarning("Вы вышли за пределы сетки 3"); return; }
 
         cells[index.y, index.x].SetObject(_gameObject);
     }
@@ -95,7 +95,7 @@ public class GridManager : MonoBehaviour
     public Vector3 GetPosCell(Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки"); return Vector3.zero; }
+        { Debug.LogWarning("Вы вышли за пределы сетки 2"); return Vector3.zero; }
 
         return cells[index.y, index.x].GetPosition();
     }
@@ -116,7 +116,7 @@ public class GridManager : MonoBehaviour
     public GameObject GetObjectInCell(Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки"); return null; }
+        { Debug.LogWarning("Вы вышли за пределы сетки 1"); return null; }
 
         return cells[index.y,index.x].GetObject();
     }
@@ -184,7 +184,7 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < countCell_Y; i++)
             for (int j = 0; j < countCell_X; j++)
             {
-                GameObject obj = GetObjectInCell(new Vector2Int(i, j));
+                GameObject obj = GetObjectInCell(new Vector2Int(j, i));
 
                 if (obj != null && obj.CompareTag("DestructableObject"))
                 {
