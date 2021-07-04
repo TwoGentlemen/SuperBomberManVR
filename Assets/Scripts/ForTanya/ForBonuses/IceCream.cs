@@ -7,9 +7,11 @@ public class IceCream : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //сделать добавление очков, когда будет система очков
+
+            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+            Destroy(gameObject);
         }
 
-        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-        Destroy(gameObject);
+
     }
 }

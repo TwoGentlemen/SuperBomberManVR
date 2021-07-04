@@ -10,11 +10,9 @@ public class AddSpeed : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<ControllPlayerPC>().AddSpeed(newspeed);
+
+            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+            Destroy(gameObject);
         }
-
-        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-        Destroy(gameObject);
     }
-
-
 }

@@ -8,10 +8,10 @@ public class NewBomb : MonoBehaviour
     { 
         if (collision.gameObject.CompareTag("Player"))
         {
-           //как то установить в руку игрока новую бомбу
-        }
+            //как то установить в руку игрока новую бомбу
 
-        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-        Destroy(gameObject);
+            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+            Destroy(gameObject);
+        }
     }
 }

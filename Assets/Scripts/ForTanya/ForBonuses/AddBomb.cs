@@ -8,10 +8,12 @@ public class AddBomb : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<SpawnBomb>().AddBombQuantityInRow();
+
+            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
+            Destroy(gameObject);
         }
 
-        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-        Destroy(gameObject);
+
     }
 
 }
