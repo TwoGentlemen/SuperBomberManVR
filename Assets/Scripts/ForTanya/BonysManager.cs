@@ -6,23 +6,13 @@ public class BonysManager : MonoBehaviour
 {
     private System.Random rand;
     private Dictionary<float, GameObject> _bonuses;
+
+    [SerializeField] private List<Bonus> bonuses;
    
-    [Header("Ссылки на бонусы")]
-    [SerializeField] private GameObject bonusSpeed;
-    [SerializeField] private GameObject bonusNewBomb;
-    [SerializeField] private GameObject bonusIceCream;
-    [SerializeField] private GameObject bonusAddBomb;
-    //[SerializeField] private GameObject bonusKickBomb;
-
-    [Header("Настрофки бонусов")]
-    [SerializeField] private int _bonusQuantity;
+    [Header("Настройки бонусов")]
     [SerializeField] [Range(1,20)] private int _maxBonusQuantity=10;
-    [SerializeField] private int speedProbability = 16;
-    [SerializeField] private int newBombProbability = 22;
-    [SerializeField] private int iceCreamProbability = 21;
-    [SerializeField] private int addBombProbability = 15;
-    //[SerializeField] private int kickBombProbability = 15;
 
+     private int _bonusQuantity;
 
     void Start()
     {
@@ -38,11 +28,11 @@ public class BonysManager : MonoBehaviour
     {
         //не окончательные варианты вероятности
         _bonuses = new Dictionary<float, GameObject>();
-        _bonuses.Add(newBombProbability, bonusNewBomb);
-        _bonuses.Add(addBombProbability, bonusAddBomb);
-        //_bonuses.Add(kickBombProbability, bonusKickBomb);
-        _bonuses.Add(iceCreamProbability, bonusIceCream);
-        _bonuses.Add(speedProbability, bonusSpeed);
+
+        foreach (var item in bonuses)
+        {
+            _bonuses.Add(item.dropProbability,item.prefab);
+        }
     }
 
     private void SetBonyses()

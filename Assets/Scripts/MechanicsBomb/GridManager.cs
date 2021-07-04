@@ -69,7 +69,7 @@ public class GridManager : MonoBehaviour
     public void SetObjectInCell(GameObject _gameObject, Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки 3"); return; }
+        { Debug.LogWarning("Вы вышли за пределы сетки"); return; }
 
         cells[index.y, index.x].SetObject(_gameObject);
     }
@@ -95,7 +95,7 @@ public class GridManager : MonoBehaviour
     public Vector3 GetPosCell(Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки 2"); return Vector3.zero; }
+        { Debug.LogWarning("Вы вышли за пределы сетки"); return Vector3.zero; }
 
         return cells[index.y, index.x].GetPosition();
     }
@@ -116,40 +116,41 @@ public class GridManager : MonoBehaviour
     public GameObject GetObjectInCell(Vector2Int index)
     {
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y)
-        { Debug.LogWarning("Вы вышли за пределы сетки 1"); return null; }
+        { Debug.LogWarning("Вы вышли за пределы сетки"); return null; }
 
         return cells[index.y,index.x].GetObject();
+    }
+
+    private void SetBehaviourInExplosion(Vector2Int index,ref bool blocking)
+    {
+        if (blocking) { return;}
+        if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y) { return;}
+
+        GameObject currentObjInCell = cells[index.y, index.x].GetObject();
+        if(currentObjInCell == null) { blocking = false; return;}
+
+        behaviourExplosion.SetBehavioutObject(currentObjInCell);
+        blocking = true;
     }
 
     public void Explosion(Vector3 bombPos, int radius)
     {
         var index = GetIndexCell(bombPos);
 
+        //Блокировка по направлениям 
+        bool isBlockingLeft = false;
+        bool isBlockingRight = false;
+        bool isBlockingForward = false;
+        bool isBlockingBack = false;
+
         for (int i = 1; i <= radius; i++)
         {
-            if(index.x+i < countCell_X)
-            {
-                //TODO
-                behaviourExplosion.SetBehavioutObject(cells[index.y,index.x+i].GetObject());
-            }
+            SetBehaviourInExplosion(new Vector2Int(index.x+i,index.y), ref isBlockingRight);
+            SetBehaviourInExplosion(new Vector2Int(index.x-i,index.y), ref isBlockingLeft);
+            SetBehaviourInExplosion(new Vector2Int(index.x,index.y+i), ref isBlockingForward);
+            SetBehaviourInExplosion(new Vector2Int(index.x,index.y-i), ref isBlockingBack);
 
-            if (index.x - i < countCell_X && index.x - i >=0)
-            {
-                //TODO
-                behaviourExplosion.SetBehavioutObject(cells[index.y, index.x - i].GetObject());
-            }
-
-            if (index.y + i < countCell_Y)
-            {
-                //TODO
-                behaviourExplosion.SetBehavioutObject(cells[index.y+i, index.x].GetObject());
-            }
-
-            if (index.y - i < countCell_Y && index.y - i >= 0)
-            {
-                //TODO
-                behaviourExplosion.SetBehavioutObject(cells[index.y-i, index.x].GetObject());
-            }
+            if(isBlockingRight && isBlockingLeft && isBlockingForward && isBlockingBack) { break; }
         }
     }
 
