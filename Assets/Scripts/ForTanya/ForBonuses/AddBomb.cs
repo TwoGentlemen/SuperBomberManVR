@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AddSpped : MonoBehaviour
+public class AddBomb : MonoBehaviour
 {
     public readonly float _probability = 15;
 

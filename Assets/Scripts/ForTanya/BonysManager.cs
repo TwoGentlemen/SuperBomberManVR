@@ -10,16 +10,19 @@ public class BonysManager : MonoBehaviour
     [Header("—сылки на бонусы")]
     [SerializeField] private GameObject bonusSpeed;
     [SerializeField] private GameObject bonusNewBomb;
-    [SerializeField] private GameObject bonusNotCD;
+    [SerializeField] private GameObject bonusIceCream;
     [SerializeField] private GameObject bonusAddBomb;
-    [SerializeField] private GameObject bonusKickBomb;
+    //[SerializeField] private GameObject bonusKickBomb;
 
     [Header("Ќастрофки бонусов")]
     [SerializeField] private int _bonusQuantity = 7;
 
     void Start()
     {
+        //создаетс€ словарь с обьектами и веро€тност€ми
         CreateProbability();
+        //расставл€ем бонусы
+        SetBonyses();
     }
 
     private void CreateProbability()
@@ -27,33 +30,46 @@ public class BonysManager : MonoBehaviour
         _bonuses = new Dictionary<float, GameObject>();
         _bonuses.Add(10, bonusNewBomb);
         _bonuses.Add(15, bonusAddBomb);
-        _bonuses.Add(20, bonusNotCD);
-        _bonuses.Add(25, bonusKickBomb);
+        //_bonuses.Add(20, bonusKickBomb);
+        _bonuses.Add(25, bonusIceCream);
         _bonuses.Add(30, bonusSpeed);
     }
 
     private void SetBonyses()
     {
+        GameObject bonus, wall;
+
         //все клетки с преп€тстви€ми
         List<Vector2Int> walls=GridManager.instance.GetObstacle();
+        
+        System.Random rand = new System.Random();
+        int cell = rand.Next(0, walls.Count);
+        List<int> occupiedCells = new List<int>();
 
-        for(int i = 0; i < _bonusQuantity; i++)
+
+        for (int i = 0; i < _bonusQuantity; i++)
         {
             //генераци€ клетки дл€ бонуса
-            System.Random rand = new System.Random();
-            int cell = rand.Next(0, walls.Count);
+            while (occupiedCells.Contains(cell))
+            {
+                cell = rand.Next(0, walls.Count);
+            }
+            occupiedCells.Add(cell);
+            
+            //Debug.Log(cell);
 
             //генераци€ бонуса
-            GameObject bonus = ChooseBonus();
-
+            bonus = ChooseBonus();
             //устанавливаем бонус
-            GameObject wall = GridManager.instance.GetObjectInCell(walls[cell]);
+            wall = GridManager.instance.GetObjectInCell(walls[cell]);
             wall.GetComponent<BonusDestrWall>().SetBonus(bonus);
+
+            //Debug.Log("бонус на позиции:" + GridManager.instance.GetPosCell(walls[cell]));
         }
     }
 
 
-
+    //генераци€ бонуса
     private GameObject ChooseBonus()
     {
         float total = 0;

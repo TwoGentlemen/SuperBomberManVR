@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class AddBomb : MonoBehaviour
+public class AddSpeed : MonoBehaviour
 {
     public readonly float _probability = 30;
-    private float _newSpeed = 200;
+    [SerializeField]private float newspeed = 200;
 
     void Start()
     {
@@ -17,8 +17,9 @@ public class AddBomb : MonoBehaviour
         GameObject ob = collision.gameObject;
         if (ob.CompareTag("Player"))
         {
-            ob.GetComponent<ControllPlayerPC>().SetSpeed(_newSpeed);
+            ob.GetComponent<ControllPlayerPC>().SetSpeed(newspeed);
         }
     }
+
 
 }
