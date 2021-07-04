@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
 
     public class BehaviourExplosion : MonoBehaviour
     {
@@ -16,9 +12,21 @@ using UnityEngine;
             switch (obj.tag)
             {
                 case "DestructableObject":
-                    DestructibleObject(obj);
+                    obj.GetComponent<BonusDestrWall>().DestroyWall();
                     break;
-                case "Player":Debug.Log("Игрок попал в зону поражения!"); break;
+                case "Player":
+                {
+                    Debug.Log("Игрок попал в зону поражения!");
+                    obj.GetComponent<LifeSystem>().DamagePlayer();
+                    break;
+                }
+
+            case "Enemy":
+                {
+                    Debug.Log("Монстр попал в зону поражения!");
+                    obj.GetComponent<MobLifeSystem>().AddDamage(1);
+                    break;
+                }
                 default:
                     break;
             }

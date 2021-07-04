@@ -46,4 +46,10 @@ public class ControllPlayerPC : MonoBehaviour
         transform.Rotate(0, inputRotate.x, 0); 
     }
 
+    public void SetSpeed(float speed) 
+    {
+
+        moveSpeed = speed;
+    }
+
 }

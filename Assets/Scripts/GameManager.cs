@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject player; //Ссылка на игрока
     [HideInInspector] public int currentCountEnemy { get; private set; }
 
-    [Tooltip("Точка в которой появляется игрок после смерти")]
-    [SerializeField] private Transform spawnPlayer;
 
     private void Awake()
     {
@@ -19,14 +17,32 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayerDeath()
+    private void Start()
     {
-        player.transform.position = spawnPlayer.position;
+        currentCountEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        Debug.Log("Всего врагов "+currentCountEnemy);
+    }
+
+    public void DeathEnemy()
+    {
+        currentCountEnemy--;
+        Debug.Log("Врагов осталось" + currentCountEnemy);
+
+        if(currentCountEnemy <= 0)
+        {
+            GameWin();
+        }
+    }
+
+
+    public void GameWin()
+    {
+        Debug.Log("----GAME WIN----");
     }
 
     public void GameOwer() //Игрок исчерпал запас своих жизней и игра заканчивается
     {
-
+        Debug.Log("----GAME OWER----");
     }
 
 
