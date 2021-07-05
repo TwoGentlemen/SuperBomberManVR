@@ -1,35 +1,78 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpawnBomb : MonoBehaviour
 {
-    [SerializeField] private GameObject bomb;
+    [Tooltip("Текущий тип бомбы, которую использует игрок")]
+    [SerializeField] private TypeBomb currentTypeBomb;
+    [SerializeField] private Bomb[] bombs;
 
-    private float coolDownTime = 5;
-    private float coolDownTimer = 0f;
+    //--Параметры отвечающие за перезарядку--
+    private float coolDownTime = 5; 
+    private float timer = 0f;
+    private bool isSpawnBomb = true;
+    private int countBomb = 1; //Кол-во бомб до перезарядки
+    private int currentCountBomb = 0;//Счетчик бомб
+    //---------------------------------------
 
-    public void SetTimer(float timer)
+    public delegate void ChangeValueBomb(int _countBomb);
+    public event ChangeValueBomb changeValueBombEvent;
+
+    private void Start()
     {
-        coolDownTimer = timer;
+        if(bombs == null) { Debug.LogError("Отсутствуют бомбы");}
     }
-
     private void Update()
+    {    
+        Timer();
+    }
+
+    /// <summary>
+    /// Увеличивает кол-во бомб до перезарядки
+    /// </summary>
+    public void AddBombQuantityInRow()
     {
+        countBomb++;
+        changeValueBombEvent?.Invoke(countBomb);
+    }
 
-        if (coolDownTimer > 0)
+    /// <summary>
+    /// Метод заменяет текущую бомбу на бомбу с выбранным типом
+    /// </summary>
+    /// <param name="typeBomb"></param>
+    public void SetCurrentTypeBomb(TypeBomb typeBomb)
+    {
+        currentTypeBomb = typeBomb;
+    }
+
+
+    private void Timer()
+    {     
+        if(timer >= coolDownTime)
         {
-            coolDownTimer -= Time.deltaTime;
+            isSpawnBomb = true;
         }
-
-        if (coolDownTimer < 0)
+        else
         {
-            coolDownTimer = 0;
+            timer += Time.deltaTime;
         }
     }
 
+    private GameObject GetCurrentBomb()
+    {
+        foreach (var item in bombs)
+        {
+            if(item.typeBomb == currentTypeBomb) { return item.prefabBomb;}
+        }
+
+        Debug.LogWarning("Бомба с текущим типом не найдена!");
+        return bombs[0].prefabBomb;
+    }
 
     public void PlantBomb()
     {
-        if (coolDownTimer > 0) return;
+        if (!isSpawnBomb){ return; }
 
 
         Vector3 bombPosition = transform.position + transform.forward * 2; //позиция бомбы с учетом того, куда смотрит игрок
@@ -44,13 +87,23 @@ public class SpawnBomb : MonoBehaviour
 
         if (sum.x == 2 * indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
         {
-            var bom = Instantiate(bomb, GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
+            var bom = Instantiate(GetCurrentBomb(), GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
             GridManager.instance.SetObjectInCell(bom);
-            coolDownTimer = coolDownTime;
+
+            currentCountBomb++;
+
+            if(currentCountBomb >= countBomb)
+            {
+                currentCountBomb = 0;
+                isSpawnBomb = false;
+                timer = 0;
+            }
+           
         }
         else
         {
             Debug.Log("Нельзя ставить по диагонали!");
         }
     }
+
 }

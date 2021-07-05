@@ -43,9 +43,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54320211d2aef9d47b001d6ebf72e159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusSpeed: {fileID: 0}
-  bonusIceCream: {fileID: 0}
-  bonusNotCD: {fileID: 0}
-  bonusNewBomb: {fileID: 0}
-  bonusKickBomb: {fileID: 0}
-  _bonusQuantity: 7
+  bonuses:
+  - name: AddSpeed
+    prefab: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
+    dropProbability: 30
+  - name: AddBomb
+    prefab: {fileID: 1632422732747425645, guid: aafb711fcb5016245bfe970437fd23ca, type: 3}
+    dropProbability: 35
+  - name: ClockBomb
+    prefab: {fileID: 790844567023868372, guid: 7aabb6ff35f00e1489c4491664db22b4, type: 3}
+    dropProbability: 25
+  bonusSpeed: {fileID: 6539026742411422009, guid: 87493ae95483ac54991dfd8349638e17, type: 3}
+  bonusNewBomb: {fileID: 790844567023868372, guid: 7aabb6ff35f00e1489c4491664db22b4, type: 3}
+  bonusIceCream: {fileID: 919847872095929545, guid: a07f408efb7806d4581c1b085dc9a195, type: 3}
+  bonusAddBomb: {fileID: 1632422732747425645, guid: aafb711fcb5016245bfe970437fd23ca, type: 3}
+  _bonusQuantity: 10
+  _maxBonusQuantity: 10
+  speedProbability: 16
+  newBombProbability: 22
+  iceCreamProbability: 21
+  addBombProbability: 15

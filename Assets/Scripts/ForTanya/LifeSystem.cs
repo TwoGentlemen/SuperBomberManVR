@@ -35,7 +35,7 @@ public class LifeSystem : MonoBehaviour
 
     private void Dead()
     {
-       GameManager.instance.GameOwer();
+       //GameManager.instance.GameOwer();
     }
 
     private void OnCollisionEnter(Collision collision)

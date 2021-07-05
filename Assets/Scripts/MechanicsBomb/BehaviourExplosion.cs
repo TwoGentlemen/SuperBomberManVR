@@ -1,20 +1,20 @@
 using UnityEngine;
 
-    public class BehaviourExplosion : MonoBehaviour
+public class BehaviourExplosion : MonoBehaviour
+{
+    public void SetBehavioutObject(GameObject obj)
     {
+        if (obj == null) { return; }
 
-        // Скопировала скрипт на переделку на будущее, вдруг пригодится
-
-        public void SetBehavioutObject(GameObject obj)
+        switch (obj.tag)
         {
-            if(obj == null) { return;}
-
-            switch (obj.tag)
-            {
-                case "DestructableObject":
-                    obj.GetComponent<BonusDestrWall>().DestroyWall();
-                    break;
-                case "Player":
+            case "DestructableObject":
+                DestructibleObject(obj);
+                break;
+            case "Bonus":
+                DestructibleBonus(obj);
+                break;
+            case "Player":
                 {
                     Debug.Log("Игрок попал в зону поражения!");
                     obj.GetComponent<LifeSystem>().DamagePlayer();
@@ -27,16 +27,21 @@ using UnityEngine;
                     obj.GetComponent<MobLifeSystem>().AddDamage(1);
                     break;
                 }
-                default:
-                    break;
-            }
+            default:
+                break;
         }
+    }
 
-        private void DestructibleObject(GameObject obj)
-        {
-            var index = GridManager.instance.GetIndexCell(obj.transform.position);
-            GridManager.instance.SetObjectInCell(null,index);
-            Destroy(obj);
-        }
-    } 
+    private void DestructibleObject(GameObject obj)
+    {
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(obj.transform.position));
+        obj.GetComponent<BonusDestrWall>().DestroyWall();    
+    }
+
+    private void DestructibleBonus(GameObject obj)
+    {
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(obj.transform.position));
+        Destroy(obj); 
+    }
+}
 

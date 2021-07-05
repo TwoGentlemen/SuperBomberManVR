@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject player; //—сылка на игрока
     [HideInInspector] public int currentCountEnemy { get; private set; }
 
+    [Header("—сылки на объекты управлени€")]
+    public SpawnBomb spawnBomb;
+
 
     private void Awake()
     {
