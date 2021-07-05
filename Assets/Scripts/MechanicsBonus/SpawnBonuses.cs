@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BonysManager : MonoBehaviour
+public class SpawnBonuses : MonoBehaviour
 {
     private System.Random rand;
     private Dictionary<float, GameObject> _bonuses;
@@ -17,7 +17,7 @@ public class BonysManager : MonoBehaviour
     void Start()
     {
         rand = new System.Random();
-        _bonusQuantity = rand.Next(3, _maxBonusQuantity+1);
+        _bonusQuantity = rand.Next(10, _maxBonusQuantity+1);
         //создается словарь с обьектами и вероятностями
         CreateProbability();
         //расставляем бонусы

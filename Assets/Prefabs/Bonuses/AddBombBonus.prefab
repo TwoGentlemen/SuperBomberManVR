@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099113280559207893}
   - component: {fileID: 2896164485417087465}
+  - component: {fileID: -3297048172651981557}
   m_Layer: 0
   m_Name: AddBombBonus
   m_TagString: Bonus
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-3297048172651981557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615205416163676015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a516743c46a9b74a9951b14f9978dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7741452455840036980
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +150,7 @@ GameObject:
   - component: {fileID: 7881312807189980376}
   - component: {fileID: 8158111346979947355}
   - component: {fileID: 5550609137830434628}
+  - component: {fileID: 600392682}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -208,3 +222,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!111 &600392682
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743885859275582888}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 75fea36bac6238949a159dc24c33ef4f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 75fea36bac6238949a159dc24c33ef4f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
