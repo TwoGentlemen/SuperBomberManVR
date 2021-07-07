@@ -12,7 +12,6 @@ public class UI_Controll_VR : MonoBehaviour
     bool isGame = true;
     public void SetPanelGameOver()
     {
-        mainCanvas.transform.position = offsetUI.position;
         panelGameOwer.SetActive(true);
         isGame = false;
     }
@@ -21,7 +20,9 @@ public class UI_Controll_VR : MonoBehaviour
     {
         if (!isGame)
         {
-            mainCanvas.transform.position = new Vector3(offsetUI.position.x,mainCanvas.transform.position.y,offsetUI.position.z);
+            mainCanvas.transform.position = new Vector3(offsetUI.position.x, mainCanvas.transform.position.y,offsetUI.position.z);
+            Quaternion rot = new Quaternion(mainCanvas.transform.rotation.x,offsetUI.rotation.y,mainCanvas.transform.rotation.z, offsetUI.rotation.w);
+            mainCanvas.transform.rotation = rot;
         }
     }
 }

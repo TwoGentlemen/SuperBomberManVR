@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Space(3)]
     public UnityEvent onGameOwer;
+    public UnityEvent onGameWin;
 
 
     private void Awake()
@@ -45,11 +46,14 @@ public class GameManager : MonoBehaviour
     public void GameWin()
     {
         Debug.Log("----GAME WIN----");
+        Time.timeScale = 0;
+        onGameWin?.Invoke();
     }
 
     public void GameOwer() //Игрок исчерпал запас своих жизней и игра заканчивается
     {
         Debug.Log("----GAME OWER----");
+        Time.timeScale = 0;
         onGameOwer?.Invoke();
     }
 
