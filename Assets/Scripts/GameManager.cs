@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         currentCountEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
         Debug.Log("Всего врагов "+currentCountEnemy);
     }
