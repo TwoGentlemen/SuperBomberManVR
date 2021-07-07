@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Ссылки на объекты управления")]
     public SpawnBomb spawnBomb;
+
+    [Space(3)]
+    public UnityEvent onGameOwer;
 
 
     private void Awake()
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void GameOwer() //Игрок исчерпал запас своих жизней и игра заканчивается
     {
         Debug.Log("----GAME OWER----");
+        onGameOwer?.Invoke();
     }
 
 
