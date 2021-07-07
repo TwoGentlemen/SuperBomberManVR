@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099113280559207893}
   - component: {fileID: 2896164485417087465}
-  - component: {fileID: -3297048172651981557}
+  - component: {fileID: 9000812838306126658}
   m_Layer: 0
   m_Name: AddBombBonus
   m_TagString: Bonus
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &-3297048172651981557
+--- !u!114 &9000812838306126658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
