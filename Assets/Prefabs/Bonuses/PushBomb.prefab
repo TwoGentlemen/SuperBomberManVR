@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 5905514893796586371}
   m_Layer: 0
   m_Name: PushBomb
-  m_TagString: Untagged
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

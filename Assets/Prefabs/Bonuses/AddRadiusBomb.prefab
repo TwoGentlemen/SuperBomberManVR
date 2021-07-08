@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565508146094862051}
   - component: {fileID: 6916930940145151073}
+  - component: {fileID: 8317179599854956853}
   m_Layer: 0
   m_Name: AddRadiusBomb
   m_TagString: Bonus
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8317179599854956853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906004200891266137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1244a91903e66c4fb71fea09802091e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2171637947137709170
 GameObject:
   m_ObjectHideFlags: 0
