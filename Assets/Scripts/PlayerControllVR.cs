@@ -7,10 +7,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerControllVR : MonoBehaviour
 {
-
     [SerializeField] private ActionBasedContinuousMoveProvider moveControll;
+
+    [Space(3)]
+    [Header("Настройки управления")]
     [SerializeField] private InputActionProperty shootAction;
 
+    [Space(3)]
+    [Header("Игровые события")]
     [SerializeField] private UnityEvent onPressShoot;
     private void Start()
     {
@@ -25,7 +29,6 @@ public class PlayerControllVR : MonoBehaviour
     public void AddSpeed()
     {
         moveControll.moveSpeed+=0.2f;
-        Debug.Log("��������� ��������");
     }
    
 }
