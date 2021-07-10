@@ -258,7 +258,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3121985161551102678}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -379,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 7863795072394895246, guid: 34a0cc3eb41d76a4f9f07f37ef2e2d95, type: 3}
       propertyPath: m_Name
       value: House1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863795072394895246, guid: 34a0cc3eb41d76a4f9f07f37ef2e2d95, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34a0cc3eb41d76a4f9f07f37ef2e2d95, type: 3}
