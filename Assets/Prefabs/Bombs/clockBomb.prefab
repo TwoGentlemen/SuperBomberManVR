@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 122288082819023726}
   - component: {fileID: -630043542474785434}
+  - component: {fileID: 6571105508091530388}
   m_Layer: 0
-  m_Name: clockBobm
+  m_Name: clockBomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790844567023868372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.001, y: 0.966, z: 5.039}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3897564078491240742}
@@ -45,6 +46,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6571105508091530388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790844567023868372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ecadcf2c9b65b4499482239dc56b7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireLength: 1
+  time: 3
+  effect: {fileID: 8426368327295778708, guid: 4eb4360efdbbea542b99389aa8a3c880, type: 3}
 --- !u!1 &2370212965769113242
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,15 +269,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4421757812376032156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 9007939294754165744}
   - {fileID: 8795572711785152096}
   m_Father: {fileID: 122288082819023726}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &3574825234555821001
 Animator:
   serializedVersion: 3

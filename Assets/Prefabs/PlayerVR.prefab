@@ -1167,7 +1167,18 @@ MonoBehaviour:
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
-    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -29307003001723986, guid: d13b0124646d0fe408f5250ebdf5c14c, type: 3}
+  activateClockBombAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Activate Clock Bomb
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 623cd5df-305d-4557-85d7-bbae539bceb9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -3319164274786090942, guid: d13b0124646d0fe408f5250ebdf5c14c, type: 3}
   onPressShoot:
     m_PersistentCalls:
       m_Calls:
@@ -1183,6 +1194,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onActivateClockBomb:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6225295351316414100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,8 +1291,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 100
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1367,13 +1381,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("—сылки на объекты управлени€")]
     public SpawnBomb spawnBomb;
+    public PlayerControllVR playerControllVR;
 
     [Space(3)]
     public UnityEvent onGameOwer;

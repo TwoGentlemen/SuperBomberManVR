@@ -12,10 +12,15 @@ public class BombExplossion : MonoBehaviour
 
     private void Start()
     {
-        Invoke("Explosion",time);
+        ActivateExplosion();
     }
 
-    private void Explosion()
+    protected virtual void ActivateExplosion()
+    {
+        Invoke("Explosion", time);
+    }
+
+    protected virtual void Explosion()
     {
         GridManager.instance.Explosion(transform.position,fireLength);
         GridManager.instance.SetObjectInCell(null,GridManager.instance.GetIndexCell(gameObject.transform.position));

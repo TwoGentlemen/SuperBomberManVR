@@ -87,7 +87,7 @@ public class SpawnBomb : MonoBehaviour
 
         if (sum.x == 2 * indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
         {
-            var bom = Instantiate(GetCurrentBomb(), GridManager.instance.GetPosCell(indexCelllBomb), Quaternion.identity);
+            var bom = Instantiate(GetCurrentBomb(), GridManager.instance.GetPosCell(indexCelllBomb), new Quaternion(0,transform.rotation.y,0,transform.rotation.w));
             GridManager.instance.SetObjectInCell(bom);
 
             currentCountBomb++;
