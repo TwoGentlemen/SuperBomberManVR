@@ -20,7 +20,8 @@ public class BombExplossion : MonoBehaviour
         GridManager.instance.Explosion(transform.position,fireLength);
         GridManager.instance.SetObjectInCell(null,GridManager.instance.GetIndexCell(gameObject.transform.position));
 
-        Instantiate(effect, transform.position,Quaternion.identity);
+        var ex = Instantiate(effect, transform.position,Quaternion.identity);
+        Destroy(ex,1f);
         Destroy(gameObject);
     }
 }  

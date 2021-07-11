@@ -38,7 +38,7 @@ public class SpawnBonuses : MonoBehaviour
     private void SetBonyses()
     {
 
-        GameObject bonus, wall;
+        GameObject wall;
         List<int> occupiedCells = new List<int>();
 
         //все клетки с препятствиями
@@ -55,20 +55,16 @@ public class SpawnBonuses : MonoBehaviour
             }
             occupiedCells.Add(cell);
 
-            //генерация бонуса
-            bonus = ChooseBonus();
 
             //устанавливаем бонус
             wall = GridManager.instance.GetObjectInCell(walls[cell]); 
 
             if(wall == null) { return;}
-            wall.GetComponent<BonusDestrWall>().SetBonus(bonus);
-
-            Debug.Log("бонус на позиции:" + GridManager.instance.GetPosCell(walls[cell]));
+            wall.GetComponent<BonusDestrWall>().SetBonus(GetRandomBonus());
         }
     }
 
-    private GameObject ChooseBonus()
+    private GameObject GetRandomBonus()
     {
         float total = 0;
 
