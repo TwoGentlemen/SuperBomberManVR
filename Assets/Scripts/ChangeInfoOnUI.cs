@@ -14,7 +14,7 @@ public class ChangeInfoOnUI : MonoBehaviour
 
     private void SpawnBomb_changeValueBombEvent(int _countBomb)
     {
-        //textCountBomb.text = _countBomb+"x";
+        textCountBomb.text = _countBomb+"x";
     }
 
     private void OnDestroy()
