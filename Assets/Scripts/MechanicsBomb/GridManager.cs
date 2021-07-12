@@ -82,7 +82,6 @@ public class GridManager : MonoBehaviour
         x = Math.Abs(x);
         y = Math.Abs(y);
            
-        // Debug.Log("x = "+ x +" y = "+y);
         return new Vector2Int(x,y);
     }
 

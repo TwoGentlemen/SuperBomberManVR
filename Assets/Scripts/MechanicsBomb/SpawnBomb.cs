@@ -44,6 +44,7 @@ public class SpawnBomb : MonoBehaviour
     public void SetCurrentTypeBomb(TypeBomb typeBomb)
     {
         currentTypeBomb = typeBomb;
+        
     }
 
 

@@ -7,7 +7,10 @@ public class ClockBombExplosion : BombExplossion
   
     protected override void ActivateExplosion()
     {
-        GameManager.instance.playerControllVR.AddClockBomb(this);
+        var buffer = GameManager.instance;
+        if (buffer == null) {Debug.LogWarning("Not GameManager!"); return; }
+
+        buffer.PlayerControll.AddClockBomb(this);
     }
 
     public void ActivateClockExplosion()

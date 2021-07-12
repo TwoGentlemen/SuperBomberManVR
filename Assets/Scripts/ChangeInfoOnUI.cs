@@ -9,16 +9,16 @@ public class ChangeInfoOnUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.spawnBomb.changeValueBombEvent += SpawnBomb_changeValueBombEvent;
+        GameManager.instance.SpawnBomb.changeValueBombEvent += SpawnBomb_changeValueBombEvent;
     }
 
     private void SpawnBomb_changeValueBombEvent(int _countBomb)
     {
-        textCountBomb.text = _countBomb+"x";
+        //textCountBomb.text = _countBomb+"x";
     }
 
     private void OnDestroy()
     {
-        GameManager.instance.spawnBomb.changeValueBombEvent -= SpawnBomb_changeValueBombEvent;
+        GameManager.instance.SpawnBomb.changeValueBombEvent -= SpawnBomb_changeValueBombEvent;
     }
 }

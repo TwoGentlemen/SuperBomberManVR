@@ -48,7 +48,7 @@ public class PlayerControllVR : MonoBehaviour
     {
         if(Time.timeScale == 0) { return;}
         onActivateClockBomb?.Invoke();
-        StartCoroutine(CaskadExplosion());
+        _ = StartCoroutine(CaskadExplosion());
     }
 
     private void ShootAction(InputAction.CallbackContext obj)

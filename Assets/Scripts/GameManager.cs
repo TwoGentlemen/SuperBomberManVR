@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentCountEnemy { get; private set; }
 
     [Header("—сылки на объекты управлени€")]
-    public SpawnBomb spawnBomb;
-    public PlayerControllVR playerControllVR;
+    public SpawnBomb SpawnBomb;
+    public PlayerControll PlayerControll;
 
     [Space(3)]
     public UnityEvent onGameOwer;

@@ -4,6 +4,9 @@ public class ClockBombBonus : BaseBonus
 {
     protected override void BehaviourBonus()
     {
-        GameManager.instance.spawnBomb.SetCurrentTypeBomb(TypeBomb.clockBomb);
+        var buffer = GameManager.instance;
+        if (buffer == null) { Debug.LogWarning("Not GameManager!"); return; }
+
+        buffer.SpawnBomb.SetCurrentTypeBomb(TypeBomb.clockBomb);
     }
 }
