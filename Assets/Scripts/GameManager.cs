@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("—сылки на объекты управлени€")]
     public SpawnBomb SpawnBomb;
     public PlayerControll PlayerControll;
+    public AudioManager AudioManager;
 
     [Space(3)]
     public UnityEvent onGameOwer;

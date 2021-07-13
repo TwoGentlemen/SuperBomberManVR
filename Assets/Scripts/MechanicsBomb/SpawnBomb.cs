@@ -82,12 +82,15 @@ public class SpawnBomb : MonoBehaviour
         var indexCellPlayer = GridManager.instance.GetIndexCell(transform.position); //Определяем индекс клетки в которой находится игрок
 
         if (!GridManager.instance.isEmptyCell(indexCelllBomb))
-        { Debug.Log("Клетка занята!"); return; }
+        { 
+            GameManager.instance.AudioManager.PlayNotSpawnAudio();
+            Debug.Log("Клетка занята!"); return; }
 
         var sum = indexCelllBomb + indexCellPlayer;
 
         if (sum.x == 2 * indexCellPlayer.x || sum.y == 2 * indexCellPlayer.y)
         {
+            GameManager.instance.AudioManager.PlaySpawnBomb();
             var bom = Instantiate(GetCurrentBomb(), GridManager.instance.GetPosCell(indexCelllBomb), new Quaternion(0,transform.rotation.y,0,transform.rotation.w));
             GridManager.instance.SetObjectInCell(bom);
 
@@ -103,6 +106,7 @@ public class SpawnBomb : MonoBehaviour
         }
         else
         {
+            GameManager.instance.AudioManager.PlayNotSpawnAudio();
             Debug.Log("Нельзя ставить по диагонали!");
         }
     }
