@@ -8,7 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Explosion()
     {
-        GridManager.instance.Explosion(transform.position, fireLength);
+        GridManager.instance.Explosion(transform.position);
         GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(gameObject.transform.position));
         Destroy(gameObject);
     }

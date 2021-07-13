@@ -22,6 +22,7 @@ public class SpawnBomb : MonoBehaviour
     private void Start()
     {
         if(bombs == null) { Debug.LogError("Отсутствуют бомбы");}
+        countBomb = GameManager.instance.PlayerStats.countBomb;
     }
     private void Update()
     {    
@@ -34,6 +35,7 @@ public class SpawnBomb : MonoBehaviour
     public void AddBombQuantityInRow()
     {
         countBomb++;
+        GameManager.instance.PlayerStats.countBomb = countBomb;
         changeValueBombEvent?.Invoke(countBomb);
     }
 

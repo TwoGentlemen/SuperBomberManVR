@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PortalControll : MonoBehaviour
 {
+    [SerializeField] private int nextLevelIndex = 0;
     [SerializeField] GameObject[] enemys;
     [SerializeField] bool isOpen = false;
 
@@ -37,6 +39,8 @@ public class PortalControll : MonoBehaviour
         {
             if (!isOpen) { return;}
             Debug.Log("NEXT LEVEL LOAD");
+
+            SceneManager.LoadScene(nextLevelIndex);
         }
     }
 }

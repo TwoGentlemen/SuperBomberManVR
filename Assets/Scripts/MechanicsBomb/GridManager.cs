@@ -9,6 +9,12 @@ public class GridManager : MonoBehaviour
 
     private Cell[,] cells;
 
+    public delegate void onChageRadiusExplosion(int radius);
+    public event onChageRadiusExplosion onChageRadiusExplosionEvent;
+
+
+    private int radiusBombExplosion = 1;
+
     [Header("Параметры наложения сетки")]
     [SerializeField] private int step = 2;
     [SerializeField] private Transform gridStart;
@@ -32,7 +38,10 @@ public class GridManager : MonoBehaviour
         InicializationCells();
         InicializationStaticObject();
     }
-
+    private void Start()
+    {
+        radiusBombExplosion = GameManager.instance.PlayerStats.radiusBomb;
+    }
     private void InicializationCells()
     {
         cells = new Cell[countCell_Y + 1, countCell_X + 1]; //Создаем матрицу клеток
@@ -60,7 +69,12 @@ public class GridManager : MonoBehaviour
             }
         }
     }
-
+    public void AddRadiusBombExplosion()
+    {
+        radiusBombExplosion++;
+        onChageRadiusExplosionEvent?.Invoke(radiusBombExplosion);
+        GameManager.instance.PlayerStats.radiusBomb = radiusBombExplosion;
+    }
     public void SetObjectInCell(GameObject _gameObject)
     {
         var index = GetIndexCell(_gameObject.transform.position);
@@ -132,7 +146,8 @@ public class GridManager : MonoBehaviour
         blocking = true;
     }
 
-    public void Explosion(Vector3 bombPos, int radius)
+    
+    public void Explosion(Vector3 bombPos)
     {
         var index = GetIndexCell(bombPos);
 
@@ -142,7 +157,7 @@ public class GridManager : MonoBehaviour
         bool isBlockingForward = false;
         bool isBlockingBack = false;
 
-        for (int i = 1; i <= radius; i++)
+        for (int i = 1; i <= radiusBombExplosion; i++)
         {
             SetBehaviourInExplosion(new Vector2Int(index.x+i,index.y), ref isBlockingRight);
             SetBehaviourInExplosion(new Vector2Int(index.x-i,index.y), ref isBlockingLeft);

@@ -10,7 +10,7 @@ public class LifeSystem : MonoBehaviour
     private Vector3 Resp;
 
     //Количество жизней
-    [SerializeField] [Range(1, 15)] private int healthPoints = 3;
+    private int healthPoints = 3;
     [SerializeField] GameObject[] imageHP;
 
     [SerializeField] float timeOneLive = 60; //Время одной жизни 
@@ -19,13 +19,15 @@ public class LifeSystem : MonoBehaviour
 
     public void Start()
     {
+        healthPoints = GameManager.instance.PlayerStats.hp;
+
         Resp = transform.position;
 
         for (int i = 0; i < healthPoints; i++)
         {
             imageHP[i].SetActive(true);
         }
-
+         
         StartCoroutine(LiveTime());
     }
 
@@ -53,7 +55,7 @@ public class LifeSystem : MonoBehaviour
     {
 
         healthPoints -= 1;
-        
+        GameManager.instance.PlayerStats.hp = healthPoints;
 
         // тут должен быть эффект
 

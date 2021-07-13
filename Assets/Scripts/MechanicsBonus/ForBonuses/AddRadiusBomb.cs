@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class AddRadiusBomb : BaseBonus
 {
-    //TODO
+    protected override void BehaviourBonus()
+    {
+       GridManager.instance.AddRadiusBombExplosion();
+    }
 }

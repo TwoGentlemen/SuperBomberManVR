@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     public PlayerControll PlayerControll;
     public AudioManager AudioManager;
     public PortalControll PortalControll;
+    public BonusesStatys PlayerStats;
 
     [Space(3)]
     public UnityEvent onGameOwer;
@@ -34,8 +37,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         currentCountEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
         startCountEnemy = currentCountEnemy;
-
         Debug.Log("Всего врагов "+currentCountEnemy);
+
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        InitializePlayerStats();
+    }
+
+    private void InitializePlayerStats()
+    {
+        PlayerStats.countBomb = 1;
+        PlayerStats.hp = 5;
+        PlayerStats.radiusBomb = 1;
     }
 
     public void DeathEnemy()
