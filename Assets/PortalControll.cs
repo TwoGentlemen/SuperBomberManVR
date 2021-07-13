@@ -40,7 +40,7 @@ public class PortalControll : MonoBehaviour
             if (!isOpen) { return;}
             Debug.Log("NEXT LEVEL LOAD");
 
-            SceneManager.LoadScene(nextLevelIndex);
+            TransitScene.instance.TransitToScene(nextLevelIndex);
         }
     }
 }

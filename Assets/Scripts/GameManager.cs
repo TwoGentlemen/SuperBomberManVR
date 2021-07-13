@@ -39,8 +39,9 @@ public class GameManager : MonoBehaviour
         startCountEnemy = currentCountEnemy;
         Debug.Log("Âñåãî âğàãîâ "+currentCountEnemy);
 
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-        InitializePlayerStats();
+         
+        if(SceneManager.GetActiveScene().buildIndex == 1){ //ÂÀÆÍÎ ĞÀÇÎÁĞÀÒÜÑß Ñ İÒÎÉ ÔÈÃÍÅÉ <-
+        InitializePlayerStats(); }
     }
 
     private void InitializePlayerStats()
