@@ -47,6 +47,9 @@ using UnityEngine;
 
         public void SetObject(GameObject gameObj)
         {
+            if (objectInCell != null)
+            if (objectInCell.CompareTag("Portal")) { return;}
+
             objectInCell = gameObj;
             ChangeMarker();
         }

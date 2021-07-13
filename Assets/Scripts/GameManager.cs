@@ -8,16 +8,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [HideInInspector] public GameObject player; //Ссылка на игрока
-    [HideInInspector] public int currentCountEnemy { get; private set; }
+    [HideInInspector] public int currentCountEnemy { get; set; }
+    [HideInInspector] public int startCountEnemy { get; private set;}
 
     [Header("Ссылки на объекты управления")]
     public SpawnBomb SpawnBomb;
     public PlayerControll PlayerControll;
     public AudioManager AudioManager;
+    public PortalControll PortalControll;
 
     [Space(3)]
     public UnityEvent onGameOwer;
-    public UnityEvent onGameWin;
+    public UnityEvent onLevelWin;
 
 
     private void Awake()
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         currentCountEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        startCountEnemy = currentCountEnemy;
+
         Debug.Log("Всего врагов "+currentCountEnemy);
     }
 
@@ -48,9 +52,9 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
-        Debug.Log("----GAME WIN----");
-        Time.timeScale = 0;
-        onGameWin?.Invoke();
+        Debug.Log("----Level WIN----");
+        PortalControll.OpeningPortal();
+        onLevelWin?.Invoke();
     }
 
     public void GameOwer() //Игрок исчерпал запас своих жизней и игра заканчивается

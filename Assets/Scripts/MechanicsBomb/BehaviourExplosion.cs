@@ -27,6 +27,12 @@ public class BehaviourExplosion : MonoBehaviour
                     obj.GetComponent<MobLifeSystem>().AddDamage(1);
                     break;
                 }
+            case "Portal":
+                {
+                    Debug.Log("Портал в зоне поражения");
+                    GameManager.instance.PortalControll.DamagePortal();
+                    break;
+                }
             default:
                 break;
         }
