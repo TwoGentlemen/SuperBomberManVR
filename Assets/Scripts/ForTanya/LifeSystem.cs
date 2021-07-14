@@ -65,8 +65,11 @@ public class LifeSystem : MonoBehaviour
             Dead();
             return;
         }
+
         imageHP[healthPoints].SetActive(false);
+
         transform.position = Resp;
+        GameManager.instance.SpawnBomb.SetCurrentTypeBomb(TypeBomb.defaultBomb);
 
         StopAllCoroutines();
         StartCoroutine(LiveTime());

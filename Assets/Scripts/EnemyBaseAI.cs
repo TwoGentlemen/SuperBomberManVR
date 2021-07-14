@@ -12,6 +12,7 @@ public class EnemyBaseAI : MonoBehaviour
 
     private void Start()
     {
+        transform.tag = "Enemy";
         GetNextTarget();
     }
 
