@@ -23,18 +23,28 @@ public class PlayerControll : MonoBehaviour
 
     List<ClockBombExplosion> clockBombs = new List<ClockBombExplosion>();
 
+    public delegate void onChangeCountRoller(int countRoller);
+    public event onChangeCountRoller onChangeCountRollerEvent; 
 
+    private int countRoller = 1;
     private Rigidbody _rb;
     float eulerLimit = 60;
 
     float X = 0;
 
+    private CharacterController character;
+
+    private float startSpeed => moveSpeed;
  
     private void Start()
     {
+        character = GetComponent<CharacterController>();
         _rb = GetComponent<Rigidbody>();
         shootAction.action.performed+=Shoot_performed;
         activateClockBombAction.action.performed += ActivateClockBomb;
+
+        countRoller = GameManager.instance.PlayerStats.countRoller;
+        moveSpeed += countRoller;
     }
     private void Update()
     {
@@ -50,7 +60,9 @@ public class PlayerControll : MonoBehaviour
     private void OnMove(Vector2 inputMovement)
     {     
         var velocity = (transform.forward * inputMovement.y + transform.right * inputMovement.x).normalized * moveSpeed * Time.deltaTime;
-        _rb.velocity = velocity;
+       // _rb.velocity = velocity;
+
+        character.Move(velocity);
     }
 
     private void onRotate(Vector2 inputRotate)
@@ -64,9 +76,19 @@ public class PlayerControll : MonoBehaviour
         transform.Rotate(0, inputRotate.x, 0);
     }
 
+    public void ResetSpeed()
+    {
+        moveSpeed = startSpeed;
+        countRoller = 0;
+        onChangeCountRollerEvent?.Invoke(countRoller);
+        GameManager.instance.PlayerStats.countRoller = countRoller;
+    }
     public void AddSpeed(float speed)
     {
         moveSpeed += speed;
+        countRoller++;
+        onChangeCountRollerEvent?.Invoke(countRoller);
+        GameManager.instance.PlayerStats.countRoller = countRoller;
     }
     public void AddClockBomb(ClockBombExplosion clockBomb)
     {
@@ -87,6 +109,13 @@ public class PlayerControll : MonoBehaviour
     private void ActivateClockBomb(InputAction.CallbackContext obj)
     {
         if (Time.timeScale == 0) { return; }
-        _ = StartCoroutine(CaskadExplosion());
+        StopAllCoroutines();
+        StartCoroutine(CaskadExplosion());
+    }
+
+    private void OnDestroy()
+    {
+        shootAction.action.performed -= Shoot_performed;
+        activateClockBombAction.action.performed -= ActivateClockBomb;
     }
 }

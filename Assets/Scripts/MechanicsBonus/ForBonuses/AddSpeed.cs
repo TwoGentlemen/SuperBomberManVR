@@ -3,7 +3,7 @@ using UnityEngine;
 public class AddSpeed : BaseBonus
 {
     [Tooltip("Add value speed player")]
-    [SerializeField] float addSpeed = 0.3f;
+    [SerializeField] float addSpeed = 1f;
     protected override void BehaviourBonus()
     {
         var buffer = GameManager.instance;

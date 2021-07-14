@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         PlayerStats.countBomb = 1;
         PlayerStats.hp = 5;
         PlayerStats.radiusBomb = 1;
+        PlayerStats.countRoller = 0;
     }
 
     public void DeathEnemy()
