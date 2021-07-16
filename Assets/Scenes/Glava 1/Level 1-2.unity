@@ -32104,6 +32104,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5822524016116612248, guid: 2c196225454069f45a07fe16ec571af8, type: 3}
+      propertyPath: healthPoints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8471905182430114726, guid: 2c196225454069f45a07fe16ec571af8, type: 3}
       propertyPath: m_Name
       value: slime
