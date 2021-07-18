@@ -6,6 +6,8 @@ using System;
 
 public class BaseExplosion : MonoBehaviour
 {
+    [SerializeField] GameObject explosionParticle;
+
     private int radius = 1;
     protected float timerStartExplosion = 4f;
 
@@ -26,6 +28,9 @@ public class BaseExplosion : MonoBehaviour
 
     protected virtual void Explosion()
     {
+        var effectExplosion = Instantiate(explosionParticle,transform.position,Quaternion.identity);
+        Destroy(effectExplosion,5f);
+
         var objectsInRadius = GridManager.instance.Explosion(transform.position,radius);
 
         foreach (var item in objectsInRadius)
@@ -34,8 +39,8 @@ public class BaseExplosion : MonoBehaviour
             {
                 case "Player": Player.instanstance.Damage(); break;
                 case "Enemy": item.GetComponent<EnemyBaseAI>().Damage(); break;
-                case "DestructableObject": Destroy(item); break;
-
+                case "DestructableObject": item.GetComponent<DestructableWall>().DestroyWall(); break;
+                case "Bonus": Destroy(item); break;
                 default: break;
             }
         }

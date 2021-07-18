@@ -26,13 +26,7 @@ namespace NEW {
 
         public void DestroyWall()
         {
-           
 
-            
-        }
-
-        private void OnDestroy()
-        {
             if (objectInWall == null)
             {
                 GridManager.instance.SetObjectInCell(null, indexCell);
@@ -42,6 +36,8 @@ namespace NEW {
                 objectInWall.SetActive(true);
                 GridManager.instance.SetObjectInCell(objectInWall, indexCell);
             }
+
+            Destroy(gameObject);
         }
     }
 }

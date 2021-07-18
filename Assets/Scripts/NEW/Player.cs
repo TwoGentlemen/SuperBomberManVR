@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NEW { 
     public class Player : MonoBehaviour
@@ -30,6 +31,12 @@ namespace NEW {
         }
 
         [SerializeField] private PlayerData playerData;
+        
+        [Space(20)]
+        [Header("Health Point UI")]
+        [SerializeField] private GameObject PanelLiveTime;
+        [SerializeField] private GameObject heartUI;
+        [HideInInspector] private Stack<GameObject> hearts = new Stack<GameObject>();
 
         //------EVENTS---------
         public delegate void ChangePlayerParametors(int value);
@@ -57,10 +64,14 @@ namespace NEW {
                 Debug.Log("New PlayerData");               
             }
             instanstance = this;
+
+            
         }
 
         private void Start()
         {
+            InitializeHealthPoint_UI();
+
             changeCountBombAction?.Invoke(playerData.countBomb);
             changeHealthPointAction?.Invoke(playerData.heathPoint);
             changeRadiusExplosionAction?.Invoke(playerData.radiusExplosion);
@@ -74,6 +85,8 @@ namespace NEW {
             playerData.heathPoint--; 
             changeHealthPointAction?.Invoke(playerData.heathPoint); // action player damage
             
+            hearts.Pop().SetActive(false);
+
             if(playerData.heathPoint <= 0)
             {
                 //GAME OWER
@@ -82,6 +95,24 @@ namespace NEW {
             }
         }
 
+        private void InitializeHealthPoint_UI()
+        {
+            if(PanelLiveTime == null || heartUI == null)
+            {
+                Debug.LogError("Not panel live time!");
+                return;
+            }
+
+            for (int i = 0; i < playerData.heathPoint; i++)
+            {
+                var imageHeart = Instantiate(heartUI,PanelLiveTime.transform.position,Quaternion.identity);
+                imageHeart.transform.SetParent(PanelLiveTime.transform);
+
+                hearts.Push(imageHeart.gameObject);
+            }
+        }
+
+        #region PowerUp
         public void SetSpeed(TypeSetMode mode, float value = 0.5f)
         {
             switch (mode)
@@ -157,7 +188,7 @@ namespace NEW {
         public TypeBomb GetTypeCurrentBomb() { return playerData.typeCurrentBomb;}
         public float GetTimeLive() { return playerData.timeLive;}
         public int GetCountBomb() { return playerData.countBomb;}
+        #endregion
 
-
-    } 
+    }
 }

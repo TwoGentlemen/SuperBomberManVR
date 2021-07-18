@@ -9,14 +9,18 @@ public class ChangeInfoOnUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textRadius;
     [SerializeField] private TextMeshProUGUI textAddSpeed;
 
-    private void Start()
+    private void Awake()
     {
-        if(Player.instanstance == null) { Debug.LogError("Not player!");}
+        if (Player.instanstance == null) { Debug.LogError("Not player!"); }
 
         //Subscribe events
         Player.instanstance.changeCountBombAction += ChangeCountBombAction;
-        Player.instanstance.changeCountRollerAction+= ChangeCountRollerAction;
-        Player.instanstance.changeRadiusExplosionAction+= ChageRadiusExplosionAction;
+        Player.instanstance.changeCountRollerAction += ChangeCountRollerAction;
+        Player.instanstance.changeRadiusExplosionAction += ChageRadiusExplosionAction;
+    }
+    private void Start()
+    {
+       
     }
 
     private void ChangeCountRollerAction(int countRoller)
