@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeBomb
-{
-    defaultBomb = 0,
-    clockBomb = 1
-}
-
+using NEW;
 [System.Serializable]
-public struct Bomb
+public struct StructBomb 
 {
-    public GameObject prefabBomb;
+    public GameObject bombPrefab;
     public TypeBomb typeBomb;
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using NEW;
 [RequireComponent(typeof (AudioSource))]
 public class BaseBonus : MonoBehaviour
 {

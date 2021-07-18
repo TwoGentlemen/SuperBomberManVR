@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using NEW;
 public class BonusDestrWall : MonoBehaviour
 {
 
@@ -28,6 +28,7 @@ public class BonusDestrWall : MonoBehaviour
             GridManager.instance.SetObjectInCell(_bonus, GridManager.instance.GetIndexCell(transform.position));
         }  
         
-        Destroy(gameObject);
+        
     }
+   
 }

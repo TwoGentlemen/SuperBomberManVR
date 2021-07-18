@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+using NEW;
 public class MoveObjectToGrid : MonoBehaviour
 {
     private Vector2Int currentIndexCell;

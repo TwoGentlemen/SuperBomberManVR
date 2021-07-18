@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7462810208452371387}
   - component: {fileID: 7462810208452371388}
   - component: {fileID: 7462810208452371389}
-  - component: {fileID: 1538281026898293023}
   - component: {fileID: 7916202791597973941}
+  - component: {fileID: 2346230696814900901}
   m_Layer: 0
   m_Name: DestructableWall
   m_TagString: DestructableObject
@@ -301,18 +301,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7462810208452371391}
   m_Mesh: {fileID: 0}
---- !u!114 &1538281026898293023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462810208452371391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc40865472275d44e83187d87d40e8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7916202791597973941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -326,6 +314,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1708984, y: 1.276855, z: 2.1822913}
   m_Center: {x: 1.0284834, y: 0.6384275, z: -0.011393097}
+--- !u!114 &2346230696814900901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462810208452371391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a93d583447700346935568e3e3a11de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInWall: {fileID: 0}
 --- !u!1001 &2334959600212881443
 PrefabInstance:
   m_ObjectHideFlags: 0

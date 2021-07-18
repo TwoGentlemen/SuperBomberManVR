@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using NEW;
 public class ChangeInfoOnUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textCountBomb;
@@ -11,35 +11,33 @@ public class ChangeInfoOnUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.SpawnBomb.changeValueBombEvent += SpawnBomb_changeValueBombEvent;
-        SpawnBomb_changeValueBombEvent(GameManager.instance.PlayerStats.countBomb);
+        if(Player.instanstance == null) { Debug.LogError("Not player!");}
 
-        GameManager.instance.PlayerControll.onChangeCountRollerEvent += PlayerControll_onChangeCountRollerEvent;
-        PlayerControll_onChangeCountRollerEvent(GameManager.instance.PlayerStats.countRoller);
-
-        GridManager.instance.onChageRadiusExplosionEvent += Instance_onChageRadiusExplosionEvent;
-        Instance_onChageRadiusExplosionEvent(GameManager.instance.PlayerStats.radiusBomb);
+        //Subscribe events
+        Player.instanstance.changeCountBombAction += ChangeCountBombAction;
+        Player.instanstance.changeCountRollerAction+= ChangeCountRollerAction;
+        Player.instanstance.changeRadiusExplosionAction+= ChageRadiusExplosionAction;
     }
 
-    private void PlayerControll_onChangeCountRollerEvent(int countRoller)
+    private void ChangeCountRollerAction(int countRoller)
     {
         textAddSpeed.text = countRoller+"x";
     }
 
-    private void Instance_onChageRadiusExplosionEvent(int radius)
+    private void ChageRadiusExplosionAction(int radius)
     {
         textRadius.text = radius+"x";
     }
 
-    private void SpawnBomb_changeValueBombEvent(int _countBomb)
+    private void ChangeCountBombAction(int _countBomb)
     {
         textCountBomb.text = _countBomb+"x";
     }
 
     private void OnDestroy()
     {
-        GameManager.instance.SpawnBomb.changeValueBombEvent -= SpawnBomb_changeValueBombEvent;
-        GameManager.instance.PlayerControll.onChangeCountRollerEvent-=PlayerControll_onChangeCountRollerEvent;
-        GridManager.instance.onChageRadiusExplosionEvent-=Instance_onChageRadiusExplosionEvent;
+        Player.instanstance.changeCountBombAction -= ChangeCountBombAction;
+        Player.instanstance.changeCountRollerAction -= ChangeCountRollerAction;
+        Player.instanstance.changeRadiusExplosionAction -= ChageRadiusExplosionAction;
     }
 }

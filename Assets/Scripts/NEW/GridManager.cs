@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+namespace NEW { 
 public class GridManager : MonoBehaviour
 {
     public static GridManager instance;
 
     private Cell[,] cells;
-
-    public delegate void onChageRadiusExplosion(int radius);
-    public event onChageRadiusExplosion onChageRadiusExplosionEvent;
-
-
-    private int radiusBombExplosion = 1;
 
     [Header("Параметры наложения сетки")]
     [SerializeField] private int step = 2;
@@ -28,7 +23,7 @@ public class GridManager : MonoBehaviour
     public int countCell_Y => 1 + (int)Vector3.Distance(gridHight.position, gridStart.position) / step; //Кол-во клеток в высоту
     public int countCell_X => 1 + (int)Vector3.Distance(gridWith.position, gridStart.position) / step; //Кол-во клеток в ширину
 
-    private BehaviourExplosion behaviourExplosion = new BehaviourExplosion();
+   
 
     private void Awake()
     {
@@ -38,10 +33,7 @@ public class GridManager : MonoBehaviour
         InicializationCells();
         InicializationStaticObject();
     }
-    private void Start()
-    {
-        radiusBombExplosion = GameManager.instance.PlayerStats.radiusBomb;
-    }
+
     private void InicializationCells()
     {
         cells = new Cell[countCell_Y + 1, countCell_X + 1]; //Создаем матрицу клеток
@@ -69,12 +61,7 @@ public class GridManager : MonoBehaviour
             }
         }
     }
-    public void AddRadiusBombExplosion()
-    {
-        radiusBombExplosion++;
-        onChageRadiusExplosionEvent?.Invoke(radiusBombExplosion);
-        GameManager.instance.PlayerStats.radiusBomb = radiusBombExplosion;
-    }
+
     public void SetObjectInCell(GameObject _gameObject)
     {
         var index = GetIndexCell(_gameObject.transform.position);
@@ -134,7 +121,7 @@ public class GridManager : MonoBehaviour
         return cells[index.y,index.x].GetObject();
     }
 
-    private void SetBehaviourInExplosion(Vector2Int index,ref bool blocking)
+    private void SetBehaviourInExplosion(Vector2Int index,ref bool blocking, ref List<GameObject> objectsInExplosion)
     {
         if (blocking) { return;}
         if (index.x < 0 || index.x >= countCell_X || index.y < 0 || index.y >= countCell_Y) { return;}
@@ -142,30 +129,33 @@ public class GridManager : MonoBehaviour
         GameObject currentObjInCell = cells[index.y, index.x].GetObject();
         if(currentObjInCell == null) { blocking = false; return;}
 
-        behaviourExplosion.SetBehavioutObject(currentObjInCell);
+        objectsInExplosion.Add(currentObjInCell);
         blocking = true;
     }
 
     
-    public void Explosion(Vector3 bombPos)
+    public List<GameObject> Explosion(Vector3 bombPos,int radius)
     {
+        List<GameObject> objctsInExplosion = new List<GameObject>();
         var index = GetIndexCell(bombPos);
-
+        
         //Блокировка по направлениям 
         bool isBlockingLeft = false;
         bool isBlockingRight = false;
         bool isBlockingForward = false;
         bool isBlockingBack = false;
 
-        for (int i = 1; i <= radiusBombExplosion; i++)
+        for (int i = 1; i <= radius; i++)
         {
-            SetBehaviourInExplosion(new Vector2Int(index.x+i,index.y), ref isBlockingRight);
-            SetBehaviourInExplosion(new Vector2Int(index.x-i,index.y), ref isBlockingLeft);
-            SetBehaviourInExplosion(new Vector2Int(index.x,index.y+i), ref isBlockingForward);
-            SetBehaviourInExplosion(new Vector2Int(index.x,index.y-i), ref isBlockingBack);
+            SetBehaviourInExplosion(new Vector2Int(index.x + i, index.y), ref isBlockingRight,ref objctsInExplosion);
+            SetBehaviourInExplosion(new Vector2Int(index.x - i, index.y), ref isBlockingLeft, ref objctsInExplosion);
+            SetBehaviourInExplosion(new Vector2Int(index.x, index.y + i), ref isBlockingForward, ref objctsInExplosion);
+            SetBehaviourInExplosion(new Vector2Int(index.x, index.y - i), ref isBlockingBack, ref objctsInExplosion);
 
-            if(isBlockingRight && isBlockingLeft && isBlockingForward && isBlockingBack) { break; }
+            if (isBlockingRight && isBlockingLeft && isBlockingForward && isBlockingBack) { break; }
         }
+
+        return objctsInExplosion;
     }
 
     public Vector3 GetRundomNextPoint(Transform currentPos)
@@ -210,4 +200,4 @@ public class GridManager : MonoBehaviour
         return result;
     }
 }
-
+}

@@ -1,12 +1,12 @@
 using UnityEngine;
-
+using NEW;
 public class AddBomb : BaseBonus
 {
     protected override void BehaviourBonus()
     {
-        var buffer = GameManager.instance;
-        if (buffer == null) { Debug.LogWarning("Not GameManager!"); return; }
+        var player = Player.instanstance;
+        if (player == null) { Debug.LogWarning("Not Player!"); return; }
 
-        buffer.SpawnBomb.AddBombQuantityInRow();
+        player.SetCountBomb(TypeSetMode.Add);
     }
 }

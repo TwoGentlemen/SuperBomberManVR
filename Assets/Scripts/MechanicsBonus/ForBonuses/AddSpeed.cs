@@ -1,14 +1,15 @@
 using UnityEngine;
 
+using NEW;
 public class AddSpeed : BaseBonus
 {
     [Tooltip("Add value speed player")]
-    [SerializeField] float addSpeed = 1f;
+    [SerializeField] float addSpeed = 0.5f;
     protected override void BehaviourBonus()
     {
-        var buffer = GameManager.instance;
-        if(buffer == null) { Debug.LogWarning("Not GameManager!"); return;}
+        var player = Player.instanstance;
+        if (player == null) { Debug.LogWarning("Not Player!"); return; }
 
-        buffer.PlayerControll.AddSpeed(addSpeed);
+        player.SetSpeed(TypeSetMode.Add);
     }
 }

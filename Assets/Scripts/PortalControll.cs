@@ -19,7 +19,7 @@ public class PortalControll : MonoBehaviour
 
     public void DamagePortal()
     {
-        if(GameManager.instance.currentCountEnemy < GameManager.instance.startCountEnemy)
+        //if(GameManager.instance.currentCountEnemy < GameManager.instance.startCountEnemy)
         {
             SpawnEnemy();
         }
@@ -29,7 +29,7 @@ public class PortalControll : MonoBehaviour
     {
         int i = UnityEngine.Random.Range(0, enemys.Length);
         Instantiate(enemys[i], transform.position+transform.up,Quaternion.identity);
-        GameManager.instance.currentCountEnemy++;
+        //GameManager.instance.currentCountEnemy++;
         Debug.Log("SpawnEnemy");
     }
 

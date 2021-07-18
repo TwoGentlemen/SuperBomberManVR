@@ -2,18 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using NEW;
 [RequireComponent(typeof(MoveObjectToGrid))]
 public class EnemyBaseAI : MonoBehaviour
 {
     [Tooltip("Скорость перемещения персонажа")]
     [SerializeField] private int moveSpeed = 3;
+    [SerializeField] private int healthPoint = 1;
 
-    Vector3 targetPos;
+    private Vector3 targetPos;
 
     private void Start()
     {
-        transform.tag = "Enemy";
+
+        GameManager.instance.onStartGame += StartGame;
         GetNextTarget();
+
+        gameObject.SetActive(false);
+    }
+
+    private void StartGame()
+    {
+        gameObject.SetActive(true);
     }
 
     private void FixedUpdate()
@@ -38,6 +48,13 @@ public class EnemyBaseAI : MonoBehaviour
 
     private void SetDistanation(Vector3 pos)
     {
+        if(!GridManager.instance.isEmptyCell(GridManager.instance.GetIndexCell(pos)) &&
+            GridManager.instance.GetObjectInCell(GridManager.instance.GetIndexCell(pos)) != gameObject)
+        {
+            GetNextTarget();
+            return;
+        }
+
         Vector3 rot = new Vector3(pos.x,transform.position.y,pos.z);
         pos = new Vector3(pos.x,transform.position.y,pos.z);
 
@@ -48,9 +65,18 @@ public class EnemyBaseAI : MonoBehaviour
         transform.Translate(dir*moveSpeed*Time.deltaTime,Space.World);
     }
 
+    public void Damage(int damage = 1)
+    {
+        healthPoint-=damage;
+
+        if (healthPoint <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDestroy()
     {
-        if(GameManager.instance == null) { return;}
-        GameManager.instance.DeathEnemy();
+        GameManager.instance.onStartGame -= StartGame;
     }
 }
