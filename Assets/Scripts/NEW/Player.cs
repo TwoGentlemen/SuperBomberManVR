@@ -50,7 +50,9 @@ namespace NEW {
 
         public delegate void GameOwertDelegate();
         public event GameOwertDelegate gameOwerAction;
+        //------End event---------
 
+        private Vector3 startPos;
         private void Awake()
         {
             if(instanstance != null)
@@ -68,6 +70,7 @@ namespace NEW {
             
         }
 
+
         private void Start()
         {
             InitializeHealthPoint_UI();
@@ -77,6 +80,8 @@ namespace NEW {
             changeRadiusExplosionAction?.Invoke(playerData.radiusExplosion);
             changeMoveSpeedAction?.Invoke(playerData.moveSpeed);
             changeCountRollerAction?.Invoke(playerData.countRoller);
+
+            startPos = transform.position;
         }
 
         //Taking damage player 
@@ -86,6 +91,8 @@ namespace NEW {
             changeHealthPointAction?.Invoke(playerData.heathPoint); // action player damage
             
             hearts.Pop().SetActive(false);
+
+            transform.position = startPos;
 
             if(playerData.heathPoint <= 0)
             {

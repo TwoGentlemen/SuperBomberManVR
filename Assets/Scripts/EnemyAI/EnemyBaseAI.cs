@@ -48,8 +48,9 @@ public class EnemyBaseAI : MonoBehaviour
 
     private void SetDistanation(Vector3 pos)
     {
-        if(!GridManager.instance.isEmptyCell(GridManager.instance.GetIndexCell(pos)) &&
-            GridManager.instance.GetObjectInCell(GridManager.instance.GetIndexCell(pos)) != gameObject)
+       
+        if (!GridManager.instance.isEmptyCellNotPlayer(GridManager.instance.GetIndexCell(pos)) &&
+           GridManager.instance.GetObjectInCell(GridManager.instance.GetIndexCell(pos)) != gameObject)
         {
             GetNextTarget();
             return;
@@ -72,6 +73,14 @@ public class EnemyBaseAI : MonoBehaviour
         if (healthPoint <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Player.instanstance.Damage();
         }
     }
 

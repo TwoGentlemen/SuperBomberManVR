@@ -9,29 +9,7 @@ namespace NEW {
         [SerializeField] private GameObject panelGameWin;
         [SerializeField] private GameObject panelGameOwer;
 
-
-        [System.Serializable]
-        public class AudioData
-        {
-            [Header("Player audio")]
-            public AudioClip damagePlayer;
-            public AudioClip takeBaseBonus;
-            public AudioClip takeBonusSpeed;
-            public AudioClip timer;
-            public AudioClip fonMusic;
-
-            [Space(5)]
-            public AudioClip gameOwer;
-            public AudioClip gameWin;
-            public AudioClip levelTransit;
-
-            [Header("Enemy audio")]
-            public AudioClip dudicIdle;
-            public AudioClip slizenIdle;
-
-        }
-
-        [SerializeField] public AudioData audioData;
+        [SerializeField] public AudioDataSO audioData;
 
         
         //Events
@@ -47,8 +25,12 @@ namespace NEW {
 
         private void Awake()
         {
-            audioData = new AudioData();
             instance = this;
+        }
+
+        private void Start()
+        {
+            StartGame();
         }
 
         [ContextMenu("start game")]

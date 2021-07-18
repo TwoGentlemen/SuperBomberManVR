@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3207978435230767058}
   - component: {fileID: 7946263192039209349}
   - component: {fileID: 2546311601441026276}
-  - component: {fileID: 1580461507657904051}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -163,19 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 8426368327295778708, guid: 4eb4360efdbbea542b99389aa8a3c880, type: 3}
---- !u!65 &1580461507657904051
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615205416163676015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
+  bomb: {fileID: 7743885859275582888}
+  audioSource: {fileID: 7946263192039209349}
 --- !u!1 &7741452455840036980
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +256,7 @@ GameObject:
   - component: {fileID: 7881312807189980376}
   - component: {fileID: 8158111346979947355}
   - component: {fileID: 5550609137830434628}
+  - component: {fileID: 3383134873963344598}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -339,3 +328,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3383134873963344598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743885859275582888}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -27,6 +27,13 @@ public class PlayerControll : MonoBehaviour
     private bool isStartGame = true; 
     private SpawnBomb spawnBomb;
 
+    private void OnEnable()
+    {
+        //----Subscribe events----
+        Player.instanstance.changeMoveSpeedAction += ChangeMoveSpeedAction;
+        NEW.GameManager.instance.onStartGame += OnStartGame;
+        shootAction.action.performed += ShootAction;
+    }
     private void Start()
     {
         character = GetComponent<CharacterController>();
@@ -36,11 +43,7 @@ public class PlayerControll : MonoBehaviour
         {
             Debug.LogError("Not spawn bomb");
         }
-
-        //----Subscribe events----
-        Player.instanstance.changeMoveSpeedAction += ChangeMoveSpeedAction;
-        NEW.GameManager.instance.onStartGame += OnStartGame;
-        shootAction.action.performed += ShootAction;
+        
     }
 
     private void ShootAction(InputAction.CallbackContext obj)

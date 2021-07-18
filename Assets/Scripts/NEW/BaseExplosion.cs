@@ -4,18 +4,23 @@ using UnityEngine;
 using NEW;
 using System;
 
+[RequireComponent(typeof (AudioSource))]
 public class BaseExplosion : MonoBehaviour
 {
     [SerializeField] GameObject explosionParticle;
+    [SerializeField] GameObject bomb;
 
+    [SerializeField] private AudioSource audioSource;
     private int radius = 1;
-    protected float timerStartExplosion = 4f;
+    private float timerStartExplosion = 4f;
 
     private Vector2Int indexCell;
    
     private void Start()
     {
         if(GridManager.instance == null || Player.instanstance == null) { Debug.LogError("Not GridManager");}
+       // audioSource = GetComponent<AudioSource>();
+
         radius = Player.instanstance.GetRadiusExplosion();
         indexCell = GridManager.instance.GetIndexCell(transform.position);
         ActivationBomb();
@@ -31,6 +36,9 @@ public class BaseExplosion : MonoBehaviour
         var effectExplosion = Instantiate(explosionParticle,transform.position,Quaternion.identity);
         Destroy(effectExplosion,5f);
 
+        audioSource.clip = GameManager.instance.audioData.explosion;
+        audioSource.Play();
+
         var objectsInRadius = GridManager.instance.Explosion(transform.position,radius);
 
         foreach (var item in objectsInRadius)
@@ -45,7 +53,9 @@ public class BaseExplosion : MonoBehaviour
             }
         }
         GridManager.instance.SetObjectInCell(null, indexCell);
-        Destroy(gameObject);
+
+        bomb.SetActive(false);
+        Destroy(gameObject,5f);
     }
 
 }
