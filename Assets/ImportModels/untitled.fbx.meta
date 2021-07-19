@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: b563adb68b03dae478b7f76a213cd4d3
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4919447057188308497
+    second: treeArm|windAction.001
   externalObjects: {}
   materials:
     materialImportMode: 2
