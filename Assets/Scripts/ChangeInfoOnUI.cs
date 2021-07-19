@@ -11,11 +11,17 @@ public class ChangeInfoOnUI : MonoBehaviour
 
     private void Awake()
     {
-        if (Player.instanstance == null) { Debug.LogError("Not player!"); }
+       
        
     }
     private void OnEnable()
     {
+       
+    }
+
+    private void Start()
+    {
+        if (Player.instanstance == null) { Debug.LogError("Not player!"); }
         //Subscribe events
         Player.instanstance.changeCountBombAction += ChangeCountBombAction;
         Player.instanstance.changeCountRollerAction += ChangeCountRollerAction;

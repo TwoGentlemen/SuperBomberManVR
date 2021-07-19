@@ -73,7 +73,7 @@ namespace NEW {
 
         private void Start()
         {
-            InitializeHealthPoint_UI();
+          //  InitializeHealthPoint_UI();
 
             changeCountBombAction?.Invoke(playerData.countBomb);
             changeHealthPointAction?.Invoke(playerData.heathPoint);

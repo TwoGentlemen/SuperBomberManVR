@@ -29,10 +29,7 @@ public class PlayerControll : MonoBehaviour
 
     private void OnEnable()
     {
-        //----Subscribe events----
-        Player.instanstance.changeMoveSpeedAction += ChangeMoveSpeedAction;
-        NEW.GameManager.instance.onStartGame += OnStartGame;
-        shootAction.action.performed += ShootAction;
+        
     }
     private void Start()
     {
@@ -43,7 +40,10 @@ public class PlayerControll : MonoBehaviour
         {
             Debug.LogError("Not spawn bomb");
         }
-        
+        //----Subscribe events----
+        Player.instanstance.changeMoveSpeedAction += ChangeMoveSpeedAction;
+        GameManager.instance.onStartGame += OnStartGame;
+        shootAction.action.performed += ShootAction;
     }
 
     private void ShootAction(InputAction.CallbackContext obj)
