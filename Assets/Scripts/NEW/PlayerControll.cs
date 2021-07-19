@@ -24,7 +24,7 @@ public class PlayerControll : MonoBehaviour
     private float _eulerLimit = 60; //Limit on rotate up and down
     private float _rotate_X = 0;
 
-    private bool isStartGame = true; 
+    [SerializeField] private bool isStartGame = true; 
     private SpawnBomb spawnBomb;
 
     private void OnEnable()
@@ -41,6 +41,7 @@ public class PlayerControll : MonoBehaviour
             Debug.LogError("Not spawn bomb");
         }
         //----Subscribe events----
+        if(Player.instanstance == null || GameManager.instance == null) { return;}
         Player.instanstance.changeMoveSpeedAction += ChangeMoveSpeedAction;
         GameManager.instance.onStartGame += OnStartGame;
         shootAction.action.performed += ShootAction;
@@ -93,6 +94,7 @@ public class PlayerControll : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (Player.instanstance == null || GameManager.instance == null) { return; }
         Player.instanstance.changeMoveSpeedAction -= ChangeMoveSpeedAction;
         NEW.GameManager.instance.onStartGame -= OnStartGame;
         shootAction.action.performed -= ShootAction;
