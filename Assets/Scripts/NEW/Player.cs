@@ -73,7 +73,7 @@ namespace NEW {
 
         private void Start()
         {
-          //  InitializeHealthPoint_UI();
+            InitializeHealthPoint_UI();
 
             changeCountBombAction?.Invoke(playerData.countBomb);
             changeHealthPointAction?.Invoke(playerData.heathPoint);
@@ -106,15 +106,16 @@ namespace NEW {
         {
             if(PanelLiveTime == null || heartUI == null)
             {
-                Debug.LogError("Not panel live time!");
+                Debug.Log("Not panel live time!");
                 return;
             }
 
             for (int i = 0; i < playerData.heathPoint; i++)
             {
-                var imageHeart = Instantiate(heartUI,PanelLiveTime.transform.position,Quaternion.identity);
+                var imageHeart = Instantiate(heartUI);
                 imageHeart.transform.SetParent(PanelLiveTime.transform);
-
+                imageHeart.transform.localPosition = Vector3.zero;
+                imageHeart.transform.localScale = Vector3.one;
                 hearts.Push(imageHeart.gameObject);
             }
         }
