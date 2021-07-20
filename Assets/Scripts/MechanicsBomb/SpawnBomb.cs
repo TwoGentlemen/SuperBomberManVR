@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using NEW;
 
 public class SpawnBomb : MonoBehaviour
@@ -19,9 +20,13 @@ public class SpawnBomb : MonoBehaviour
     private int currentCountBomb = 0;//Счетчик бомб
     //---------------------------------------
 
+    private GameObject headPlayer;
+
 
     private void Start()
     {
+        headPlayer = GetComponent<XRRig>().cameraGameObject;
+
         if(bombs == null) { Debug.LogError("Отсутствуют бомбы");}
         countBomb = Player.instanstance.GetCountBomb();
 
@@ -66,7 +71,7 @@ public class SpawnBomb : MonoBehaviour
         if (!isSpawnBomb){ return; }
 
 
-        Vector3 bombPosition = transform.position + transform.forward * 2; //позиция бомбы с учетом того, куда смотрит игрок
+        Vector3 bombPosition = headPlayer.transform.position+ headPlayer.transform.forward * 2; //позиция бомбы с учетом того, куда смотрит игрок
 
         var indexCelllBomb = GridManager.instance.GetIndexCell(bombPosition); //Определяем индекс клетки в которой будет находится бомба
         var indexCellPlayer = GridManager.instance.GetIndexCell(transform.position); //Определяем индекс клетки в которой находится игрок

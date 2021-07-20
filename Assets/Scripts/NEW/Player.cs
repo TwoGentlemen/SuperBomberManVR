@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace NEW { 
     public class Player : MonoBehaviour
@@ -31,6 +32,10 @@ namespace NEW {
         }
 
         [SerializeField] private PlayerData playerData;
+
+        [Space(20)]
+        [Header("Input Controlls")]
+        [SerializeField] private InputActionProperty shootInput;
         
         [Space(20)]
         [Header("Health Point UI")]
@@ -53,6 +58,8 @@ namespace NEW {
         //------End event---------
 
         private Vector3 startPos;
+
+        private SpawnBomb spawnBomb;
         private void Awake()
         {
             if(instanstance != null)
@@ -68,11 +75,15 @@ namespace NEW {
             instanstance = this;
 
             
+            spawnBomb = GetComponent<SpawnBomb>();
+            if(spawnBomb == null) { Debug.LogError("Not SpawnBomb");}
         }
 
 
         private void Start()
         {
+            shootInput.action.performed += OnShootAction;
+
             InitializeHealthPoint_UI();
 
             changeCountBombAction?.Invoke(playerData.countBomb);
@@ -82,6 +93,12 @@ namespace NEW {
             changeCountRollerAction?.Invoke(playerData.countRoller);
 
             startPos = transform.position;
+        }
+
+        private void OnShootAction(InputAction.CallbackContext obj)
+        {
+            spawnBomb.PlantBomb();
+
         }
 
         //Taking damage player 
