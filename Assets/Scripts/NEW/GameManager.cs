@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace NEW { 
@@ -20,8 +21,11 @@ namespace NEW {
         public event OnStartOrStopGame onPauseGame;
         public event OnStartOrStopGame onResumeGame;
 
+        public delegate void OnChangeCountEnemy(int value);
+        public event OnChangeCountEnemy changeCountEnemyAction;
 
         private bool isPause = false;
+        private int quantityEnemy = 0;
 
         private void Awake()
         {
@@ -31,7 +35,32 @@ namespace NEW {
         private void Start()
         {
             StartGame();
+            CountingEnemy();
         }
+
+        #region Enemys
+        private void CountingEnemy()
+        {
+            var enemys = GameObject.FindGameObjectsWithTag("Enemy");
+            quantityEnemy = enemys.Length;
+            
+            changeCountEnemyAction?.Invoke(quantityEnemy);
+        }
+
+        public void DeathEnemy()
+        {
+            quantityEnemy--;
+
+            if(quantityEnemy <= 0)
+                UnlockNextLevel();
+        }
+
+        private void UnlockNextLevel()
+        {
+            
+        }
+
+        #endregion
 
         [ContextMenu("start game")]
         public void StartGame()

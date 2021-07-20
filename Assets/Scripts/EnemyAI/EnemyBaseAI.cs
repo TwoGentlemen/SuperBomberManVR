@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using NEW;
+using System;
+
 [RequireComponent(typeof(MoveObjectToGrid))]
 public class EnemyBaseAI : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class EnemyBaseAI : MonoBehaviour
     [SerializeField] private int healthPoint = 1;
 
     private Vector3 targetPos;
+    private bool isMoveEnemy = true;
 
     private void Start()
     {
@@ -28,6 +31,8 @@ public class EnemyBaseAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!isMoveEnemy)
+            return;
     
         if (Vector3.Distance(targetPos, transform.position) <= 0.1f)
         { 
@@ -66,14 +71,29 @@ public class EnemyBaseAI : MonoBehaviour
         transform.Translate(dir*moveSpeed*Time.deltaTime,Space.World);
     }
 
+    IEnumerator PauseMoveEnemy()
+    {
+        isMoveEnemy = false;
+        yield return new WaitForSeconds(1f);
+        isMoveEnemy = true;
+    }
     public void Damage(int damage = 1)
     {
         healthPoint-=damage;
 
+        StartCoroutine(PauseMoveEnemy());
+
         if (healthPoint <= 0)
-        {
-            Destroy(gameObject);
-        }
+            DeathEnemy();
+    }
+
+    private void DeathEnemy()
+    {
+        if(GameManager.instance == null)
+            return;
+
+        GameManager.instance.DeathEnemy();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
