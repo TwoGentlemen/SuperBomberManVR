@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace NEW { 
     public class Player : MonoBehaviour
@@ -86,8 +87,7 @@ namespace NEW {
 
         private void OnEnable()
         {
-            GameManager.instance.onStartGame += StartGame;
-            GameManager.instance.onStopGame += StopGame;
+          
         }
 
         private void StopGame()
@@ -102,6 +102,9 @@ namespace NEW {
 
         private void Start()
         {
+            GameManager.instance.onStartGame += StartGame;
+            GameManager.instance.onStopGame += StopGame;
+
             shootInput.action.performed += OnShootAction;
 
             InitializeHealthPoint_UI();
@@ -113,6 +116,8 @@ namespace NEW {
             changeCountRollerAction?.Invoke(playerData.countRoller);
 
             startPos = transform.position;
+
+
         }
 
         private void OnShootAction(InputAction.CallbackContext obj)
@@ -137,7 +142,7 @@ namespace NEW {
             if(playerData.heathPoint <= 0)
             {
                 //GAME OWER
-                Debug.Log("GameOwer");
+                Debug.Log("GameOver");
                 GameManager.instance.StopGame();
                 GameOwer();
             }
@@ -145,7 +150,7 @@ namespace NEW {
 
         private void GameOwer()
         {
-            transform.position = gameOwerPos.position;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void InitializeHealthPoint_UI()

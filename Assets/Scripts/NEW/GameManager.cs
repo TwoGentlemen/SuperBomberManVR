@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace NEW { 
     public class GameManager : MonoBehaviour
@@ -65,7 +66,7 @@ namespace NEW {
 
         private void UnlockNextLevel()
         {
-            
+            SceneManager.LoadScene(indexNextLevel);
         }
 
         #endregion

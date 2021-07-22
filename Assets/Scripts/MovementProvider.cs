@@ -24,8 +24,7 @@ public class MovementProvider : LocomotionProvider
     }
     private void OnEnable()
     {
-        GameManager.instance.onStartGame += StartGame;
-        GameManager.instance.onStopGame += StopGame;
+        
     }
 
     private void StopGame()
@@ -40,8 +39,11 @@ public class MovementProvider : LocomotionProvider
 
     private void Start()
     {
+        GameManager.instance.onStartGame += StartGame;
+        GameManager.instance.onStopGame += StopGame;
+
         player = Player.instanstance;
-        PositionController();
+        PositionController(); 
     }
 
     private void Update()
