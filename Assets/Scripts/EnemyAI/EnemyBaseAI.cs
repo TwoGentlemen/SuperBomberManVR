@@ -19,8 +19,14 @@ public class EnemyBaseAI : MonoBehaviour
     {
 
         GameManager.instance.onStartGame += StartGame;
+        GameManager.instance.onStopGame += StopGame; 
         GetNextTarget();
 
+        gameObject.SetActive(false);
+    }
+
+    private void StopGame()
+    {
         gameObject.SetActive(false);
     }
 
@@ -107,5 +113,6 @@ public class EnemyBaseAI : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.instance.onStartGame -= StartGame;
+        GameManager.instance.onStopGame -= StopGame;
     }
 }

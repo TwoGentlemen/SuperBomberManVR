@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
 
 namespace NEW { 
     public class Player : MonoBehaviour
@@ -30,6 +31,9 @@ namespace NEW {
             [Space(10)]
             [SerializeField] public int score = 0;
         }
+
+        [SerializeField] private Transform gameOwerPos;
+        [SerializeField] private Transform gameWinPos;
 
         [SerializeField] private PlayerData playerData;
 
@@ -60,6 +64,7 @@ namespace NEW {
         private Vector3 startPos;
 
         private SpawnBomb spawnBomb;
+        private bool isStartGame = false;
         private void Awake()
         {
             if(instanstance != null)
@@ -79,6 +84,21 @@ namespace NEW {
             if(spawnBomb == null) { Debug.LogError("Not SpawnBomb");}
         }
 
+        private void OnEnable()
+        {
+            GameManager.instance.onStartGame += StartGame;
+            GameManager.instance.onStopGame += StopGame;
+        }
+
+        private void StopGame()
+        {
+            isStartGame = false;
+        }
+
+        private void StartGame()
+        {
+            isStartGame = true;
+        }
 
         private void Start()
         {
@@ -97,6 +117,9 @@ namespace NEW {
 
         private void OnShootAction(InputAction.CallbackContext obj)
         {
+            if(!isStartGame)
+                return;
+
             spawnBomb.PlantBomb();
 
         }
@@ -115,8 +138,14 @@ namespace NEW {
             {
                 //GAME OWER
                 Debug.Log("GameOwer");
-                gameOwerAction?.Invoke();
+                GameManager.instance.StopGame();
+                GameOwer();
             }
+        }
+
+        private void GameOwer()
+        {
+            transform.position = gameOwerPos.position;
         }
 
         private void InitializeHealthPoint_UI()

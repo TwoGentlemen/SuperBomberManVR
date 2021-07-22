@@ -15,10 +15,27 @@ public class MovementProvider : LocomotionProvider
 
     private Player player;
 
+    private bool isMove = false;
+
     protected override void Awake()
     {
         characterController = GetComponent<CharacterController>();
         head = GetComponent<XRRig>().cameraGameObject;
+    }
+    private void OnEnable()
+    {
+        GameManager.instance.onStartGame += StartGame;
+        GameManager.instance.onStopGame += StopGame;
+    }
+
+    private void StopGame()
+    {
+        isMove = false;
+    }
+
+    private void StartGame()
+    {
+        isMove = true;
     }
 
     private void Start()
@@ -29,6 +46,9 @@ public class MovementProvider : LocomotionProvider
 
     private void Update()
     {
+        if(!isMove)
+            return;
+
         PositionController();
         CheckForInput();
         ApplyGravity();
@@ -87,6 +107,12 @@ public class MovementProvider : LocomotionProvider
         Vector3 gravity = new Vector3(0,Physics.gravity.y,0);
         gravity.y *= Time.deltaTime;
 
-        characterController.Move(gravity*Time.deltaTime);
+        characterController.Move(gravity);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.onStartGame -= StartGame;
+        GameManager.instance.onStopGame -= StopGame;
     }
 }

@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace NEW { 
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance; //Singleton
 
-        [SerializeField] private GameObject panelPause;
-        [SerializeField] private GameObject panelGameWin;
-        [SerializeField] private GameObject panelGameOwer;
+        [SerializeField] int indexNextLevel = 0;
+        [SerializeField] GameObject panelPause;
+        [SerializeField] InputActionProperty onPauseAction;
 
         [SerializeField] public AudioDataSO audioData;
 
@@ -36,6 +37,13 @@ namespace NEW {
         {
             StartGame();
             CountingEnemy();
+
+            onPauseAction.action.performed += PauseAction;
+        }
+
+        private void PauseAction(InputAction.CallbackContext obj)
+        {
+            PauseGame();
         }
 
         #region Enemys
@@ -79,10 +87,12 @@ namespace NEW {
             {
                 
                 onResumeGame?.Invoke();
+                StartGame();
             }
             else
             {
                 onPauseGame?.Invoke();
+                StopGame();
             }
 
             panelPause.SetActive(!isPause);
