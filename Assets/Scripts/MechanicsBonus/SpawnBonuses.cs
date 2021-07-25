@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using NEW;
 public class SpawnBonuses : MonoBehaviour
 {
     private System.Random rand;
@@ -56,11 +56,10 @@ public class SpawnBonuses : MonoBehaviour
             occupiedCells.Add(cell);
 
 
-            //устанавливаем бонус
+           
             wall = GridManager.instance.GetObjectInCell(walls[cell]); 
-
             if(wall == null) { return;}
-            wall.GetComponent<BonusDestrWall>().SetBonus(GetRandomBonus());
+            wall.GetComponent<DestructableWall>().SetObjectInWall(GetRandomBonus());
         }
     }
 

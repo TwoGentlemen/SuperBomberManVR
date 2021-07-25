@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class AddSpeed : MonoBehaviour
+using NEW;
+public class AddSpeed : BaseBonus
 {
-    [SerializeField]private float newspeed = 50;
-
-    private void OnCollisionEnter(Collision collision)
+    [Tooltip("Add value speed player")]
+    [SerializeField] float addSpeed = 0.5f;
+    protected override void BehaviourBonus()
     {
+        var player = Player.instanstance;
+        if (player == null) { Debug.LogWarning("Not Player!"); return; }
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerControllVR>().AddSpeed();
-
-            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-            Destroy(gameObject);
-        }
+        player.SetSpeed(TypeSetMode.Add);
     }
 }

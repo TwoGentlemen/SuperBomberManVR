@@ -1,19 +1,12 @@
 using UnityEngine;
-
-public class AddBomb : MonoBehaviour
+using NEW;
+public class AddBomb : BaseBonus
 {
-
-    private void OnCollisionEnter(Collision collision)
+    protected override void BehaviourBonus()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GameManager.instance.spawnBomb.AddBombQuantityInRow();
+        var player = Player.instanstance;
+        if (player == null) { Debug.LogWarning("Not Player!"); return; }
 
-            GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
-            Destroy(gameObject);
-        }
-
-
+        player.SetCountBomb(TypeSetMode.Add);
     }
-
 }
