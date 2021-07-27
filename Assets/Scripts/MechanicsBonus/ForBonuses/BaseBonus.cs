@@ -43,11 +43,17 @@ public class BaseBonus : MonoBehaviour
         collider.enabled = false;
         bodyObj.gameObject.SetActive(false);
 
+        
         Destroy(gameObject, audioTakeBonus.length);
     }
 
     protected virtual void BehaviourBonus()
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
     }
 }
