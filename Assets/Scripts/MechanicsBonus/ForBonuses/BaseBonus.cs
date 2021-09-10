@@ -54,6 +54,9 @@ public class BaseBonus : MonoBehaviour
 
     private void OnDestroy()
     {
+        if(GridManager.instance == null)
+            return;
+
         GridManager.instance.SetObjectInCell(null, GridManager.instance.GetIndexCell(transform.position));
     }
 }

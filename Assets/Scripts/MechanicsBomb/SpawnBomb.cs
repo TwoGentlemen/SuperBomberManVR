@@ -12,7 +12,7 @@ public class SpawnBomb : MonoBehaviour
     [SerializeField] private StructBomb[] bombs;
 
     //--Параметры отвечающие за перезарядку--
-    private readonly int coolDownTime = 5; 
+    private readonly int coolDownTime = 3; 
     private float timer = 0f;
 
     private bool isSpawnBomb = true;

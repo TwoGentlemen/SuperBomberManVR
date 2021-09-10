@@ -77,6 +77,9 @@ public class GridManager : MonoBehaviour
 
     public Vector2Int GetIndexCell(Vector3 pos)
     {
+        if(gridStart == null)
+                return Vector2Int.zero;
+
         var x = (int)Math.Round((gridStart.position.x - pos.x) / step);
         var y = (int)Math.Round((gridStart.position.z - pos.z) / step);
 
